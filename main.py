@@ -1,53 +1,46 @@
-
+import sys
 
 class player:
     def __init__(self):
         self.name = ""
-        self.container          = bateau(5, 2)
+        self.map = map(15,15,3)
+        self.container          = bateau(5, 2, 1)
 
-        self.porte_avion_1      = bateau(5, 1)
-        self.porte_avion_2      = bateau(5, 1)
+        self.porte_avion_1      = bateau(5, 1,1)
+        self.porte_avion_2      = bateau(5, 1, 1)
 
-        self.destroyer_1        = bateau(4, 1)
-        self.destroyer_2        = bateau(4, 1)
-        self.destroyer_3        = bateau(4, 1)
+        self.destroyer_1        = bateau(4, 1, 1)
+        self.destroyer_2        = bateau(4, 1 , 1)
+        self.destroyer_3        = bateau(4, 1, 1)
 
-        self.torpilleur_1       = bateau(4, 1)
-        self.torpilleur_2       = bateau(4, 1)
-        self.torpilleur_3       = bateau(4, 1)
+        self.torpilleur_1       = bateau(4, 1, 1)
+        self.torpilleur_2       = bateau(4, 1 , 1)
+        self.torpilleur_3       = bateau(4, 1, 1)
 
-        self.petit_sous_marin_1 = sous_marin(3, 1)
-        self.petit_sous_marin_2 = sous_marin(3, 1)
-        self.petit_sous_marin_3 = sous_marin(3, 1)
-        self.petit_sous_marin_4 = sous_marin(3, 1)
-        self.petit_sous_marin_5 = sous_marin(3, 1)
+        self.petit_sous_marin_1 = sous_marin(3, 1, 2)
+        self.petit_sous_marin_2 = sous_marin(3, 1, 2)
+        self.petit_sous_marin_3 = sous_marin(3, 1, 2)
+        self.petit_sous_marin_4 = sous_marin(3, 1, 2)
+        self.petit_sous_marin_5 = sous_marin(3, 1, 2)
 
-        self.mini_sous_marin_1  = sous_marin(2, 1)
-        self.mini_sous_marin_2  = sous_marin(2, 1)
-        self.ss_marin_nucleaire_1 = sous_marin_nucleaire(6, 1)
-        self.ss_marin_nucleaire_2 = sous_marin_nucleaire(6, 1)
+        self.mini_sous_marin_1  = sous_marin(2, 1, 2)
+        self.mini_sous_marin_2  = sous_marin(2, 1, 2)
+        self.ss_marin_nucleaire_1 = sous_marin_nucleaire(6, 1, 2)
+        self.ss_marin_nucleaire_2 = sous_marin_nucleaire(6, 1, 2)
 
-    def map(self,x,y,layer):
-        x = 15
-        y = 15
-        layer = 3
-
-
-class bateau :
-    def __init__(self, size_x = 0, size_y = 0,pos_x = 0, pos_y = 0, pos_angle = 'H', layer = 1):
-        self.angle = pos_angle
-        self.size_x = size_x
-        self.size_y = size_y
-        self.x = pos_x
-        self.y = pos_y
+class map:
+    def __init__(self,x , y, layer):
+        self.x = x
+        self.y = y
         self.layer = layer
-
-    def container(self):
+    def place_bateau(self,x_begin,y_begin,x_finish,y_finish, player):
         pass
 
 
-class sous_marin_nucleaire :
-    def __init__(self, size_x=0, size_y=0, pos_x=0, pos_y=0,pos_angle = 'H', layer = 2):
+
+
+class bateau(map):
+    def vaisseau(self, size_x = 0, size_y = 0,pos_x = 0, pos_y = 0, pos_angle = 'H', layer = 1):
         self.angle = pos_angle
         self.size_x = size_x
         self.size_y = size_y
@@ -55,8 +48,10 @@ class sous_marin_nucleaire :
         self.y = pos_y
         self.layer = layer
 
-class sous_marin :
-    def __init__(self, size_x=0, size_y=0, pos_x=0, pos_y=0,pos_angle = 'H', layer = 2):
+
+
+class sous_marin_nucleaire(map) :
+    def func(self, size_x=0, size_y=0, pos_x=0, pos_y=0,pos_angle = 'H', layer = 2):
         self.angle = pos_angle
         self.size_x = size_x
         self.size_y = size_y
@@ -64,6 +59,16 @@ class sous_marin :
         self.y = pos_y
         self.layer = layer
 
+class sous_marin(map) :
+    def func(self, size_x=0, size_y=0, pos_x=0, pos_y=0,pos_angle = 'H', layer = 2):
+        self.angle = pos_angle
+        self.size_x = size_x
+        self.size_y = size_y
+        self.x = pos_x
+        self.y = pos_y
+        self.layer = layer
+class attack:
+    pass
 
 
 def place_bateau(player):
@@ -142,6 +147,8 @@ def place_sous_marin(player):
     player.mini_sous_marin_2.y = input("position y du mini sous-marin ?")
     player.mini_sous_marin_2.angle = input("orientation ?")
 
+
+
 def config_partie(player):
     player.name = input("entrer non joueur: ")
     place_bateau(player)
@@ -152,7 +159,14 @@ def start_partie():
     player_2 = player()
     config_partie(player_1)
     config_partie(player_2)
+def main():
+    start_partie()
 
-#if __name__=="main":
-start_partie()
+
+def main():
+    pass
+
+
+if __name__ == "__main__":
+    main()
 
