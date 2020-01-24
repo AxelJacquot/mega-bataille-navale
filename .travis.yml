@@ -12,5 +12,3 @@ jobs:
   - python: "3.8"
     env: TEST_SUITE=suite_3_8
 script: ./test.py $TEST_SUITE
-
-
