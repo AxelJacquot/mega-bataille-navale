@@ -39,40 +39,12 @@ class map:
         self.matrice_allied = matrice_allied
 
 
-def test_place_bateau(self,bateau,x_begin,y_begin,x_finish,y_finish, player):
-    for(i == x_begin in)
-    if(player.map.matrice_allied[x_begin][y_begin]==' '):
-        matrice_allied = [x_begin],[y_begin]
-    if(player.container.angle=='H'):
-        self.x_begin = x_begin
-        self.x_finish = player.container.y + x_begin
-        self.y_begin = y_begin
-        self.y_finish = player.container.x + y_begin
-    if(player.container.angle=='V'):
-                self.x_begin = x_begin
-                self.x_finish = player.porte_avion_1.x + x_begin
-                self.y_begin = y_begin
-                self.y_finish = player.porte_avion_1.y + y_begin
-    if (player.porte_avion_1.angle == 'H'):
-                self.x_begin = x_begin
-                self.x_finish = player.porte_avion_2.y + x_begin
-                self.y_begin = y_begin
-                self.y_finish = player.porte_avion_2.x + y_begin
-    if (player.porte_avion_1.angle == 'V'):
-                self.x_begin = x_begin
-                self.x_finish = player.destro.x + x_begin
-                self.y_begin = y_begin
-                self.y_finish = player.container.y + y_begin
-    if (player.porte_avion_2.angle == 'H'):
-                self.x_begin = x_begin
-                self.x_finish = player.container.y + x_begin
-                self.y_begin = y_begin
-                self.y_finish = player.container.x + y_begin
-    if (player.porte_avion_2.angle == 'V'):
-                self.x_begin = x_begin
-                self.x_finish = player.container.x + x_begin
-                self.y_begin = y_begin
-                self.y_finish = player.container.y + y_begin
+def test_place_bateau(self,bateau,x_begin,y_begin,x_finish,y_finish,angle, player):
+    for x in range(x_begin, x_finish) :
+        for y in range(y_begin,y_finish):
+            if (player.map.matrice_allied[x][y] == ' '):
+                matrice_allied = ["#"], ["#"]
+
 
 def place_boat(self,bateau,x_begin,y_begin,x_finish,y_finish, player, layer):
     pass
