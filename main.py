@@ -5,9 +5,8 @@ class player:
         self.name = ""
         self.map = map(15,15,3)
         self.container          = bateau(5, 2, 1)
-
-        self.porte_avion_1      = bateau(5, 1,1)
-        self.porte_avion_2      = bateau(5, 1, 1)
+        self.porte_avion_1      = porte_avion(5, 1,1)
+        self.porte_avion_2      = porte_avion(5, 1, 1)
 
         self.destroyer_1        = bateau(4, 1, 1)
         self.destroyer_2        = bateau(4, 1 , 1)
@@ -29,14 +28,54 @@ class player:
         self.ss_marin_nucleaire_2 = sous_marin_nucleaire(6, 1, 2)
 
 class map:
-    def __init__(self,x , y, layer):
+    def __init__(self, x, y, layer, player, matrice_ennemy , matrice_allied):
         self.x = x
         self.y = y
         self.layer = layer
-    def place_bateau(self,x_begin,y_begin,x_finish,y_finish, player):
-        pass
+        self.player = player
+        matrice_map_ennemy = [x],[y]
+        matrice_map_allied = [x],[y]
+        self.matrice_ennemy = matrice_ennemy
+        self.matrice_allied = matrice_allied
 
 
+def test_place_bateau(self,bateau,x_begin,y_begin,x_finish,y_finish, player):
+    for(i == x_begin in)
+    if(player.map.matrice_allied[x_begin][y_begin]==' '):
+        matrice_allied = [x_begin],[y_begin]
+    if(player.container.angle=='H'):
+        self.x_begin = x_begin
+        self.x_finish = player.container.y + x_begin
+        self.y_begin = y_begin
+        self.y_finish = player.container.x + y_begin
+    if(player.container.angle=='V'):
+                self.x_begin = x_begin
+                self.x_finish = player.porte_avion_1.x + x_begin
+                self.y_begin = y_begin
+                self.y_finish = player.porte_avion_1.y + y_begin
+    if (player.porte_avion_1.angle == 'H'):
+                self.x_begin = x_begin
+                self.x_finish = player.porte_avion_2.y + x_begin
+                self.y_begin = y_begin
+                self.y_finish = player.porte_avion_2.x + y_begin
+    if (player.porte_avion_1.angle == 'V'):
+                self.x_begin = x_begin
+                self.x_finish = player.destro.x + x_begin
+                self.y_begin = y_begin
+                self.y_finish = player.container.y + y_begin
+    if (player.porte_avion_2.angle == 'H'):
+                self.x_begin = x_begin
+                self.x_finish = player.container.y + x_begin
+                self.y_begin = y_begin
+                self.y_finish = player.container.x + y_begin
+    if (player.porte_avion_2.angle == 'V'):
+                self.x_begin = x_begin
+                self.x_finish = player.container.x + x_begin
+                self.y_begin = y_begin
+                self.y_finish = player.container.y + y_begin
+
+def place_boat(self,bateau,x_begin,y_begin,x_finish,y_finish, player, layer):
+    pass
 
 
 class bateau(map):
@@ -48,9 +87,16 @@ class bateau(map):
         self.y = pos_y
         self.layer = layer
 
+class porte_avion(map):
+    def vaisseau(self, size_x = 0, size_y = 0,pos_x = 0, pos_y = 0, pos_angle = 'H', layer = 1):
+        self.angle = pos_angle
+        self.size_x = size_x
+        self.size_y = size_y
+        self.x = pos_x
+        self.y = pos_y
+        self.layer = layer
 
-
-class sous_marin_nucleaire(map) :
+class sous_marin_nucleaire(map):
     def func(self, size_x=0, size_y=0, pos_x=0, pos_y=0,pos_angle = 'H', layer = 2):
         self.angle = pos_angle
         self.size_x = size_x
@@ -59,7 +105,7 @@ class sous_marin_nucleaire(map) :
         self.y = pos_y
         self.layer = layer
 
-class sous_marin(map) :
+class sous_marin(map):
     def func(self, size_x=0, size_y=0, pos_x=0, pos_y=0,pos_angle = 'H', layer = 2):
         self.angle = pos_angle
         self.size_x = size_x
@@ -161,7 +207,7 @@ def start_partie():
     config_partie(player_2)
 def main():
     start_partie()
-
+    x = player.torpilleur_3.size_x
 
 def main():
     pass
