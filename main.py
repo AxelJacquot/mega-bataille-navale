@@ -4,6 +4,7 @@ class player:
     def __init__(self):
         self.name = ""
         self.map = map(15,15,3)
+        map.map_represent(15,15)
         self.container          = bateau(5, 2, 1)
         self.porte_avion_1      = porte_avion(5, 1,1)
         self.porte_avion_2      = porte_avion(5, 1, 1)
@@ -28,22 +29,28 @@ class player:
         self.ss_marin_nucleaire_2 = sous_marin_nucleaire(6, 1, 2)
 
 class map:
-    def __init__(self, x, y, layer, player, matrice_ennemy , matrice_allied):
+    def __init__(self, x, y, layer):
         self.x = x
         self.y = y
         self.layer = layer
         self.player = player
+        self.matrice_map_ennemy = [x],[y]
+        self.matrice_map_allied = [x],[y]
+
+    def map_represent(x,y):
         matrice_map_ennemy = [x],[y]
         matrice_map_allied = [x],[y]
-        self.matrice_ennemy = matrice_ennemy
-        self.matrice_allied = matrice_allied
+        for x in range(x, y):
+            for y in range(x, y):
+                matrice_allied = [" "], [" "]
 
-
-def test_place_bateau(self,bateau,x_begin,y_begin,x_finish,y_finish,angle, player):
-    for x in range(x_begin, x_finish) :
-        for y in range(y_begin,y_finish):
-            if (player.map.matrice_allied[x][y] == ' '):
-                matrice_allied = ["#"], ["#"]
+    def test_place_bateau(self,x_begin,y_begin,x_finish,y_finish,angle, player):
+        for x in range(x_begin, x_finish) :
+            for y in range(y_begin,y_finish):
+                if (player.map.matrice_allied[x][y] == " "):
+                    matrice_allied = ["#"], ["#"]
+                if(angle == "H"):
+                    pass
 
 
 def place_boat(self,bateau,x_begin,y_begin,x_finish,y_finish, player, layer):
@@ -172,18 +179,11 @@ def config_partie(player):
     place_bateau(player)
     place_bateau(player)
 
-def start_partie():
+
+
+def main():
     player_1 = player()
-    player_2 = player()
-    config_partie(player_1)
-    config_partie(player_2)
-def main():
-    start_partie()
-    x = player.torpilleur_3.size_x
-
-def main():
-    pass
-
+    map.test_place_bateau(0,5,15,10,17,"H",player_1)
 
 if __name__ == "__main__":
     main()
