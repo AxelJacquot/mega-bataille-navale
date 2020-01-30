@@ -1,0 +1,144 @@
+%.$ xelatex --shell-escape TP1.tex
+
+%path to figures
+\newcommand{\figures}{./Figures}
+
+\documentclass[
+11pt,
+oneside,
+french,
+singlespacing,
+liststotoc,
+toctotoc,
+headsepline,
+]{MastersDoctoralThesis}
+
+\usepackage{mathpazo}
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX, Mapping=tex-text]{TeX Gyre Pagella}
+\setmonofont{FreeMonoBold}
+\usepackage[backend=bibtex, style=authoryear, natbib=true]{biblatex}
+\addbibresource{example.bib}
+\usepackage[autostyle=true]{csquotes}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{minted}
+\usepackage{xcolor}
+
+\geometry{
+	paper=a4paper,
+	inner=2.5cm,
+	outer=2.5cm,
+	bindingoffset=0.5cm,
+	top=1.5cm,
+	bottom=1.5cm,
+	}
+
+\thesistitle{Rapport du projet \\ Méga bataille navale}
+\supervisor {}
+\examiner{}
+\degree{\href{http://www.estei.fr/filiere/informatique-systemes-embarques}{MASTER Informatique embarqué}}
+\author{
+\href{https://github.com/ThomasAbg}{Thomas ABGRALL}\\
+\href{https://github.com/AxelJacquot}{Axel JACQUOT}\\
+\href{https://github.com/AntoineVenier}{Antoine VENIER}\\
+\href{https://github.com/eric33440}{Eric REBILLON}}
+
+\addresses{}
+\subject{}
+\keywords{}
+\university{\href{https://ynov-bordeaux.com/}{YNOV}}
+\department{\href{https://ynov-bordeaux.com/mastere-robotique-ingenierie-systeme/}{Mastère Aéronautique et système embarqué}}
+\faculty{\href{https://ynov-bordeaux.com/}{Ynov Bordeaux}}
+
+\AtBeginDocument{
+	\hypersetup{pdftitle=\ttitle}
+	\hypersetup{pdfauthor=\authorname}
+	\hypersetup{pdfkeywords=\keywordnames}
+	}
+
+\begin{document}
+
+\mainmatter
+\pagestyle{plain}
+\usemintedstyle{monokailight}
+%bash/Ruby/basemake/
+\definecolor{gris}{gray}{0.97}
+\definecolor{gris2}{HTML}{282828}
+\definecolor{ubuntu}{HTML}{300A24}
+
+\newcommand{\code}[1]{\begin{minted}[
+linenos,
+breaklines,
+breakautoindent,
+breakaftersymbolpost,
+bgcolor=gris,
+fontsize=\scriptsize,
+obeytabs,
+tabsize=4,
+showtabs,
+]{#1}}
+
+\newcommand{\codeinline}[2]{\mintinline[fontsize=\footnotesize]{#1}{#2}}
+
+
+%------------------------------------------------------------------
+
+\begin{titlepage}
+\begin{center}
+
+{\href{https://ynov-bordeaux.com/}{\includegraphics[width=0.5\linewidth]{\figures/logo_ynov_campus_rvb.png}}}
+\vspace*{.06\textheight}
+\vspace{1.5cm}\\
+\textsc{\Large Projet }\\[0.5cm]
+
+\HRule \\[0.4cm]
+{\huge \bfseries \ttitle\par}\vspace{0.4cm}
+\HRule \\[1.5cm]
+
+\large{\emph{Auteurs :}\\
+\authorname}
+
+\vspace{4cm}
+\degreename\\[1cm]
+{\vspace{0.4cm}\scshape\LARGE \univname}\\\deptname\\\groupname\\[1cm]
+
+\vfill
+
+{\large \today}\\[1cm]
+
+\end{center}
+\end{titlepage}
+
+%------------------------------------------------------------------
+
+%\begin{acknowledgements}
+%\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
+%\end{acknowledgements}
+
+\tableofcontents
+
+\pagestyle{thesis}
+
+
+\part{Partie de groupe}
+\include{Chapters/Chapter1}
+%\part{Thomas ABGRALL}
+%\include{Chapters/Abgrall/Chapter1}
+%\include{Chapters/Chapter2}
+%\part{Clément CALLIAU}
+%\include{Chapters/Calliau/Chapter1}
+%\include{Chapters/Calliau/Chapter2}
+%\part{Jerome MAURY}
+%\include{Chapters/Maury/Chapter1}
+%\include{Chapters/Calliau/Chapter1}
+%\part{Eric REBILLON}
+%\include{Chapters/Rebillon/Chapter1}
+%\include{Chapters/Calliau/Chapter1}
+
+\appendix
+
+%\include{Appendices/AppendixA}
+
+\end{document}

@@ -1,0 +1,12 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {nil}{}
+\contentsline {chapter}{Contents}{1}{chapter*.1}% 
+\contentsline {part}{I\hspace {1em}Partie de groupe}{2}{part.2}% 
+\contentsline {chapter}{\numberline {1}Cahier des charges}{3}{chapter.3}% 
+\contentsline {section}{\numberline {1.1}Introduction}{3}{section.4}% 
+\contentsline {section}{\numberline {1.2}Spécifications techniques}{3}{section.6}% 
+\contentsline {subsection}{\numberline {1.2.1}Fonctionnalités obligatoires}{4}{subsection.7}% 
+\contentsline {subsection}{\numberline {1.2.2}Fonctionnalités envisagées}{4}{subsection.8}% 
+\contentsline {subsection}{\numberline {1.2.3}Matériel}{4}{subsection.9}% 
+\contentsline {subsection}{\numberline {1.2.4}Résumé des exigences}{5}{subsection.10}% 
+\contentsline {section}{\numberline {1.3}Organisation}{5}{section.12}% 
