@@ -11,6 +11,14 @@ jobs:
     env: TEST_SUITE=suite_3_6
   - python: "3.8"
     env: TEST_SUITE=suite_3_8
-script: ./test.py $TEST_SUITE
+
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+
+script: 
+  
+- pytest
+	
 
 
