@@ -1,19 +1,17 @@
-import bateau
-import sous_marin
+from main import *
+from player import *
+from Map import *
+from bateau import *
+from sous_marin import *
 
 
-class player:
-    def map(self,x,y,layer):
-        x = 15
-        y = 15
-        layer = 3
-        container = bateau(5, 2)
-        porte_avion_1 = bateau(5,1)
-        porte_avion_2 = bateau(5, 1)
-        destroyer_1 = bateau(4, 1)
-        destroyer_2 = bateau(4, 1)
-        destroyer_3 = bateau(4, 1)
-        torpilleur_1 = bateau(4, 1)
-        torpilleur_2 = bateau(4, 1)
-        torpilleur_3 = bateau(4, 1)
-
+class Player:
+    def __init__(self, x_begin, x_finish, y_begin, y_finish, num_boat):
+        self.name = ""
+        self.map = Map()
+        self.Surface = Boat()
+        self.Profounder = SM()
+        self.shoot = attack()
+        self.place_boat = self.map.PSM(x_begin, x_finish, y_begin, y_finish, 2, num_boat)
+        self.shooting = self.shoot.tire(7, 5, 2)
+        self.shield = self.shoot.defend(9, 1, 0)

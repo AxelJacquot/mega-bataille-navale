@@ -1,38 +1,47 @@
-def place_bateau(player):
-    player.container.x      = input("position x du container ?")
-    player.container.y      = input("position y du container ?")
-    player.container.angle  = input("orientation ?")
+class Boat:
+    def __init__(self, size_x=0, size_y=0, layer=1):
+        self.size_x = size_x
+        self.size_y = size_y
 
-    player.porte_avion_1.x      = input("position x du port-avion ?")
-    player.porte_avion_1.y      = input("position y du port-avion ?")
-    player.porte_avion_1.angle  = input("orientation ?")
+        self.layer = layer
+        self.container = Container()
+
+        self.PA_1 = PA()
+        self.PA_2 = PA()
+
+        self.destroyer_1 = Destroyer()
+        self.destroyer_2 = Destroyer()
+        self.destroyer_3 = Destroyer()
+
+        self.Tor_1 = Tor()
+        self.Tor_2 = Tor()
+        self.Tor_3 = Tor()
 
 
-    player.porte_avion_2.x      = input("position x du port-avion ?")
-    player.porte_avion_2.y      = input("position y du container ?")
-    player.porte_avion_2.angle  = input("orientation ?")
+class Container:
+    def __init__(self, size_x=5, size_y=2, layer=1):
+        self.size_x = size_x
+        self.size_y = size_y
+        self.layer = layer
 
-    player.destroyer_1.x      = input("position x du destroyer ?")
-    player.destroyer_1.y      = input("position y du destroyer ?")
-    player.destroyer_1.angle  = input("orientation ?")
 
-    player.destroyer_2.x      = input("position x du destroyer ?")
-    player.destroyer_2.y      = input("position y du destroyer ?")
-    player.destroyer_2.angle  = input("orientation ?")
+class Destroyer:
+    def __init__(self, size_x=4, size_y=1, layer=1):
+        self.size_x = size_x
+        self.size_y = size_y
+        self.layer = layer
 
-    player.destroyer_3.x = input("position x du destroyer ?")
-    player.destroyer_3.y = input("position y du destroyer ?")
-    player.destroyer_3.angle = input("orientation ?")
 
-    player.torpilleur_1.x = input("position x du torpilleur ?")
-    player.torpilleur_1.y = input("position y du torpilleur ?")
-    player.torpilleur_1.angle = input("orientation ?")
+class PA:
+    def __init__(self, size_x=5, size_y=1, layer=1):
+        self.size_x = size_x
+        self.size_y = size_y
+        self.layer = layer
 
-    player.torpilleur_2.x = input("position x du torpilleur ?")
-    player.torpilleur_2.y = input("position y du torpilleur ?")
-    player.torpilleur_2.angle = input("orientation ?")
 
-    player.torpilleur_3.x = input("position x du torpilleur ?")
-    player.torpilleur_3.y = input("position y du torpilleur ?")
-    player.torpilleur_3.angle = input("orientation ?")
+class Tor:
+    def __init__(self, size_x=4, size_y=1, layer=1):
+        self.size_x = size_x
+        self.size_y = size_y
+        self.layer = layer
 
