@@ -39,6 +39,8 @@ def main():
     print(player1.place_boat)
     player1.shoot.map_ennemy[7][5][0] = 1
     pprint(player1.map.map_allied)
+    attack.tire(7, 5, 2)
+    defend.case_touche(9, 1, 0)
 
 
 if __name__ == "__main__":
