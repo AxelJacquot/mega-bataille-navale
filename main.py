@@ -7,40 +7,55 @@ from Map import *
 from bateau import *
 from sous_marin import *
 
-class attack:
-    def __init__(self, touch=0):
-        self.touch = touch
-        self.map_ennemy = [[[0] * 15] * 15] * 3
 
-    def tire(self, x, y, layer):
-        pprint(self.map_ennemy)
-        if (self.map_ennemy[x][y][layer] != 0):
-            self.map_ennemy[x][y][layer] = "X"
-            return "Tire a atteint sa cible"
-        else:
-            return "Tire dans le vide"
+class attack:
+
+    def __init__(self):
+        self.touch = 0
+        self.map_enemy = np.zeros(225 * 3)
+        self.map_enemy.resize((3, 15, 15))
+
+    def tire(self, x, y, layer, touche=0):
+        if touche == 0:
+            self.map_enemy[layer, y, x] = 1
+            result = 0
+            return result
+        if touche == 1:
+            self.map_enemy[layer, y, x] = 9
+            result = 1
+            return result
 
 
 class defend:
-    def __init__(self, touch=0):
-        self.touch = touch
+    def __init__(self):
+        self.tire = 0
+        self.touch = 0
 
-    def case_touche(self, x, y, layer):
-        if Player.map.map_allied[x][y][layer] != 0:
-            Player.map.map_allied[x][y][layer] = "X"
-            touch = 1
-        else:
-            touch = 0
-        return touch
+    def case_tire_1(self, x, y, layer, player):
+        if self.tire == 1:
+            if player.map.map_allied[layer, y, x] != 0:
+                player.map.map_allied[layer, y, x] = 9
+                self.touch = 1
+            else:
+                self.touch = 0
+            return
+
+    def case_tire_2(self, x, y, layer, player):
+        if self.tire == 2:
+            if player.map.map_allied[layer, y, x] != 0:
+                for i in range(2):
+                    pass
 
 
 def main():
-    player1 = Player(0, 10, 8, 0, 2)
-    print(player1.place_boat)
-    player1.shoot.map_ennemy[7][5][0] = 1
+    player1 = Player(5, 10, 5, 8, 4)
+    test = attack()
+    test_defend = defend()
+    a = test.tire(7, 7, 1)
+    test_defend.case_tire_1(9, 8, 1, player1, 1)
+    print(a)
+    print(b)
     pprint(player1.map.map_allied)
-    attack.tire(7, 5, 2)
-    defend.case_touche(9, 1, 0)
 
 
 if __name__ == "__main__":

@@ -12,5 +12,5 @@ class Player:
         self.Surface = Boat()
         self.Profounder = SM()
         self.shoot = attack()
-        self.place_boat = self.map.PSM(x_begin, x_finish, y_begin, y_finish, 2, num_boat)
+        self.place_boat = self.map.PSM(x_begin, x_finish, y_begin, y_finish, 1, num_boat)
 
