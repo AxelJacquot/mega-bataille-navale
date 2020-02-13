@@ -1,3 +1,5 @@
+defend
+player
 numpy
 pytest==5.3.5
 coverage==5.0.3
