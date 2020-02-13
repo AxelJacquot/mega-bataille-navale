@@ -1,8 +1,13 @@
+from test_attack import *
+from test_defend import *
+from test_player import *
+from test_Map import *
+from bateau import *
+from sous_marin import *
 import numpy as np
-from pprint import pprint
 
 
-class Map:
+class test_Map:
     def __init__(self, size_x=15, size_y=15, layer=2):
         self.error = -1
         self.map_allied = np.zeros(225 * 3)
