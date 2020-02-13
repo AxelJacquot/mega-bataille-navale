@@ -1,9 +1,8 @@
-from Class_attack import *
-from Class_defend import *
-from Class_player import *
-from Class_Map import *
-from bateau import *
-from sous_marin import *
+from Class_attack import attack
+from Class_defend import defend
+from Class_Map import Map
+from bateau import Boat
+from sous_marin import SM
 
 
 class player:
