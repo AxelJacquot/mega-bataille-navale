@@ -1,24 +1,13 @@
 language: python
 python:
-  - '3.6'
-  - '3.7'
-  - '3.8'
-jobs:
-  include:
-  - python: "3.7"
-    env: TEST_SUITE=suite_3_7
-  - python: "3.6"
-    env: TEST_SUITE=suite_3_6
-  - python: "3.8"
-    env: TEST_SUITE=suite_3_8
-
+  - "3.8"
 # command to install dependencies
 install:
-  - pip install -r requirements.txt
+  - pip3 install -r requirements.txt
 
-script: 
-  
-- pytest
-	
-
-
+# command to run tests
+script:
+  - pytest --cov=hello 
+#Command to use coverage 
+after_success:
+  - coveralls
