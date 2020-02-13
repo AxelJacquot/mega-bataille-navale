@@ -1,8 +1,7 @@
-from Class_attack import attack
-from Class_defend import defend
-from Class_Map import Map
-from bateau import Boat
-from sous_marin import SM
+
+from program.Class_Map import Map
+from program.bateau import Boat
+from program.sous_marin import SM
 
 
 class player:

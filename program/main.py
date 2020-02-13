@@ -1,8 +1,7 @@
 from pprint import pprint
-from Class_attack import attack
-from Class_defend import defend
-from Class_player import player
-
+from program.Class_attack import attack
+from program.Class_player import player
+from program.Class_defend import defend
 
 
 def main():
