@@ -1,7 +1,7 @@
-from attack import *
-from defend import *
-from player import *
-from Map import *
+from Class_attack import *
+from Class_defend import *
+from Class_player import *
+from Class_Map import *
 from bateau import *
 from sous_marin import *
 

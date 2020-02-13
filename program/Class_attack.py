@@ -1,8 +1,3 @@
-from defend import *
-from player import *
-from Map import *
-from bateau import *
-from sous_marin import *
 import numpy as np
 
 

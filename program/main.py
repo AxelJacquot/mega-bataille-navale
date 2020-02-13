@@ -1,10 +1,7 @@
-import sys
 from pprint import pprint
-import numpy as np
-
-from attack import *
-from defend import *
-from player import *
+from Class_attack import *
+from Class_defend import *
+from Class_player import *
 
 
 def main():
