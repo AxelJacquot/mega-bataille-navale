@@ -1,11 +1,12 @@
-from test_defend import *
-from test_player import *
-from test_Map import *
+from defend import *
+from player import *
+from Map import *
 from bateau import *
 from sous_marin import *
+import numpy as np
 
 
-class test_attack:
+class attack:
     touch = 0
 
     def __init__(self):
@@ -27,11 +28,8 @@ class test_attack:
         if touch == 1:
             for i in range(2):
                 for j in range(2):
-                    if self.map_enemy[layer, y + j, x + i] != 0:
-                        self.map_enemy[layer, y + j, x + i] = 9
-                        self.tir = 1
-                    else:
-                        self.tir = 0
+                    self.map_enemy[layer, y + j, x + i] = 9
+                    self.tir = 1
         else:
             self.tir = 0
             return self.tir
