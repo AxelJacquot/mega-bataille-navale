@@ -3,7 +3,7 @@ from pprint import pprint
 import numpy as np
 
 
-from attack import attack
+#from attack import attack
 from defend import defend
 from player import player
 

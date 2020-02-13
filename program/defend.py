@@ -1,6 +1,4 @@
 
-
-
 class defend:
     touch = 0
 
