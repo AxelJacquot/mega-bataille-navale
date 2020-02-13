@@ -8,7 +8,7 @@ def main():
     player1 = player(5, 10, 5, 8, 4)
     test = attack()
     t_defend = defend()
-    a = test.tire(0, 0, 1, player1, 0)
+    a = test.tire(0, 0, 1, 0)
     b = t_defend.case_tire_1(7, 7, 1, player1, 0)
     pprint(player1.map.map_allied)
     c = t_defend.case_tire_1(10, 8, 1, player1, 1)

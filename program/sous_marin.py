@@ -14,6 +14,9 @@ class SM:
 
 
 class SMNuclear:
+    size_x = None
+    size_y = None
+
     def __init__(self, size_x=0, size_y=0, layer=2):
         self.size_x = size_x
         self.size_y = size_y
@@ -21,6 +24,9 @@ class SMNuclear:
 
 
 class PSM:
+    size_y = None
+    size_x = None
+
     def __init__(self, size_x=3, size_y=1, layer=2):
         self.size_x = size_x
         self.size_y = size_y
@@ -28,7 +34,12 @@ class PSM:
 
 
 class MSM:
+    size_x = None
+    size_y = None
+
     def __init__(self, size_x=2, size_y=1, layer=2):
         self.size_x = size_x
         self.size_y = size_y
         self.layer = layer
+
+
