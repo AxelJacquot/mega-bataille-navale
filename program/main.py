@@ -3,9 +3,9 @@ from pprint import pprint
 import numpy as np
 
 
-#from attack import attack
-from defend import defend
-from player import player
+from program.attack import attack
+from program.defend import defend
+from program.player import player
 
 
 def main():
