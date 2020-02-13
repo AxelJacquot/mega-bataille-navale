@@ -7,7 +7,11 @@ install:
 
 # command to run tests
 script:
+<<<<<<< HEAD
   - pytest --cov=program 
+=======
+  - pytest --cov=test_main
+>>>>>>> 3d17609a4aba602d69c308ce5391762246b86e9c
 #Command to use coverage 
 after_success:
   - coveralls

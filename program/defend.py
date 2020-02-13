@@ -1,12 +1,7 @@
-from test_attack import *
-from test_defend import *
-from test_player import *
-from test_Map import *
-from bateau import *
-from sous_marin import *
 
 
-class test_defend:
+
+class defend:
     touch = 0
 
     def case_tire_1(self, x, y, layer, player, tir):
