@@ -17,13 +17,6 @@ import time
 import datetime
 from multiprocessing import Queue
 
-from Frame import (
-    run_window,
-    WriteMsgRcv,
-    addClient,
-    removeClient,
-    set_flag_list,
-)
 from client import connectClient, ClientSend, exitClient
 
 
@@ -35,27 +28,29 @@ def running():
     """Run of the main thread."""
     statusConnect = 0
     while 1:
+        # interface code client
         if not statusclient.empty():
             receive_client = statusclient.get()
             print("Sys msg from Client: ", receive_client)
             if receive_client[0] == "rcv":
-                print("receive_client: ", receive_client[1])
-                WriteMsgRcv(receive_client[1])
+                print("receive_client message: ", receive_client[1])
+                ####
             elif receive_client[0] == "Connclient":
-                addClient(receive_client[1])
-            elif receive_client[0] == "list_rcv":
-                set_flag_list()
-            elif receive_client[0] == "Discoclient":
-                removeClient(receive_client[1])
+                print("New client connect")
+                ####
 
+        # interface code window
         elif not status.empty():
             dataReceive = status.get()
             print("Sys msg from Frame: ", dataReceive)
 
             if dataReceive[0] == "Connect":
+                # dataReceive: IP, Port, Pseudo
                 print("Start processus client")
                 statusclient.put(
-                    ["RunClient", dataReceive[1], dataReceive[2]], True,
+                    ["RunClient", dataReceive[1], dataReceive[2]],
+                    dataReceive[3],
+                    True,
                 )
                 statusConnect = 1
             elif dataReceive[0] == "Pseudo":
@@ -70,8 +65,6 @@ def running():
                 )
 
             if dataReceive == "exit":
-                if statusConnect == 1:
-                    ClientSend(99, "")
                 exitClient()
                 print("Main close")
                 break
@@ -79,11 +72,14 @@ def running():
             time.sleep(0.1)
 
 
+# Tread interface window
 thread1 = threading.Thread(target=running, args=())
 thread1.start()
+# Tread client
 thread2 = threading.Thread(target=connectClient, args=(statusclient,))
 thread2.start()
 
+# run interface window
 run_window(status)
 
 # Closing

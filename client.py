@@ -13,6 +13,8 @@
 # !/usr/bin/env python
 
 import socket
+from PySide2.QtCore import SIGNAL, QObject
+
 
 status_client = False
 
@@ -38,6 +40,7 @@ def connectClient(data_q):
                 CLIENT.settimeout(10)
                 ip_address = data_receive[1]
                 port = data_receive[2]
+                pseudo = data_receive[3]
                 # pseudo = data_receive[3]
                 catcherror = 0
 
@@ -65,7 +68,7 @@ def connectClient(data_q):
                     catcherror = 1
 
                 if catcherror == 0:
-                    ClientSend(10, "")
+                    ClientSend(1, pseudo)
                     print("We are CONNECT")
                     break
                 else:
@@ -79,7 +82,7 @@ def connectClient(data_q):
             pass  # no data receive
         if data_rcv:
             # message = data_rcv.decode()
-            data_rcv[0]
+            ID = data_rcv[0]
             lenght = data_rcv[1]
             print("ID receive:", data_rcv[0])
             print("lenght receive:", data_rcv[1])
@@ -88,36 +91,24 @@ def connectClient(data_q):
             message = message[1:]
             print("Message rcv:", message)
 
-            # receive new classique message
-            if data_rcv[0] == 1:
-                data_q.put(["rcv", message, ""], True)
-                message = ""
-
-            # receive new client connect in chatroom
-            elif data_rcv[0] == 2:
+            # receive new client connect in game
+            if ID == 1:
                 pseudos = message.split(",")
                 print("pseudos:", pseudos)
                 for pseudo in pseudos:
                     if pseudo != "":
                         print("pseudo[", i, "]=", pseudo)
                         data_q.put(["Connclient", pseudo])
-                data_q.put(["list_rcv", pseudos])
                 message = ""
-
-            # receive list currently connected client
-            elif data_rcv[0] == 3 and lenght != 0:
-                print("MESSAGE3:", message, type(message))
-                data_q.put(["Connclient", message])
+            elif ID == 2:
+                print("Reception attack")
+            elif ID == 3:
+                print("Reception reponce attack")
+            # receive new classique message
+            elif ID == 5:
+                data_q.put(["rcv", message, ""], True)
                 message = ""
-
-            # detect client leave chatroom
-            elif data_rcv[0] == 99:
-                print("AVANT envoi depuis le cllient:", message)
-                data_q.put(["Discoclient", message])
-                message = ""
-
             data_rcv = False
-
     CLIENT.close()
     print("Client close")
 
@@ -141,7 +132,6 @@ def replaceMultiple(mainString, toBeReplaces, newString):
         if elem in mainString:
             # Replace the string
             mainString = mainString.replace(elem, newString)
-
     return mainString
 
 
