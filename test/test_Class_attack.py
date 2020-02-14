@@ -12,7 +12,7 @@ def test_tire_x_case():
     at.tire_x_case(1,5,2,1,4)
     assert at.tir == 1
     
-    
+
     
 
 
