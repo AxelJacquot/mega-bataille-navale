@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/eric/PycharmProjects/mega_bataille_navale/mega-bataille-navale/mega-bataille-navale/venv"
+set -gx VIRTUAL_ENV "/home/axel/git/mega-bataille-navale/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/eric/PycharmProjects/mega_bataille_navale/mega-bataille-navale/mega-bataille-navale/venv"
+VIRTUAL_ENV="/home/axel/git/mega-bataille-navale/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -1,4 +1,3 @@
-from program.sous_marin import SM, SMNuclear, PSM, MSM
 
 
 class Boat:
@@ -9,141 +8,118 @@ class Boat:
         self.layer = layer
         self.container = Container()
 
-        self.PA_1 = PA()
-        self.PA_2 = PA()
+        self.PA = PA()
 
-        self.destroyer_1 = Destroyer()
-        self.destroyer_2 = Destroyer()
-        self.destroyer_3 = Destroyer()
-
-        self.Tor_1 = Tor()
-        self.Tor_2 = Tor()
-        self.Tor_3 = Tor()
+        self.destroyer = Destroyer()
+        self.Tor = Tor()
 
 
 class Container:
-    size_y = None
-    size_x = None
-
     def __init__(self, size_x=5, size_y=2, layer=1):
         self.size_x = size_x
         self.size_y = size_y
         self.layer = layer
+        self.x_finish = 0
+        self.y_finish = 0
 
+    def place_boat(self, x , y, type_boat,index, orientation):
+        if type_boat == 1:
+            if 0 >= index < 2:
+                if orientation == 1:
+                    if  x <= x-self.size_y:
+                        self.x_finish = x + self.size_y
+                        self.y_finish = y + self.size_x
+                    else:
+                        return 1
+                else:
+                    if  x <= x-self.size_x:
+                        self.x_finish = x + self.size_x
+                        self.y_finish = y + self.size_y
+                    else: 
+                        return 1
+            else:
+                return 1
 
 class Destroyer:
-    size_y = None
-    size_x = None
-
     def __init__(self, size_x=4, size_y=1, layer=1):
         self.size_x = size_x
         self.size_y = size_y
         self.layer = layer
+        self.x_finish = 0
+        self.y_finish = 0
 
+    def place_boat(self, x , y, type_boat,index, orientation):
+        if type_boat == 2:
+            if 0 >= index < 2:
+                if orientation == 1:
+                    if  x <= x-self.size_y:
+                        self.x_finish = x + self.size_y
+                        self.y_finish = y + self.size_x
+                    else:
+                        return 1
+                else:
+                    if  x <= x-self.size_x:
+                        self.x_finish = x + self.size_x
+                        self.y_finish = y + self.size_y
+                    else: 
+                        return 1
+            else:
+                return 1
 
 class PA:
-    size_y = None
-    size_x = None
-
     def __init__(self, size_x=5, size_y=1, layer=1):
         self.size_x = size_x
         self.size_y = size_y
         self.layer = layer
+        self.x_finish = 0
+        self.y_finish = 0
 
+    def place_boat(self, x , y, type_boat,index, orientation):
+        if type_boat == 3:
+            if 0 >= index < 3:
+                if orientation == 1:
+                    if  x <= x-self.size_y:
+                        self.x_finish = x + self.size_y
+                        self.y_finish = y + self.size_x
+                    else:
+                        return 1
+                else:
+                    if  x <= x-self.size_x:
+                        self.x_finish = x + self.size_x
+                        self.y_finish = y + self.size_y
+                    else: 
+                        return 1
+            else:
+                return 1
 
 class Tor:
-    size_x = None
-    size_y = None
 
     def __init__(self, size_x=4, size_y=1, layer=1):
         self.size_x = size_x
         self.size_y = size_y
         self.layer = layer
+        self.x_finish = 0
+        self.y_finish = 0
+        
+    def place_boat(self, x , y, type_boat,index, orientation):
+        if type_boat == 4:
+            if 0 >= index < 3:
+                if orientation == 1:
+                    if  x <= x-self.size_y:
+                        self.x_finish = x + self.size_y
+                        self.y_finish = y + self.size_x
+                    else:
+                        return 1
+                else:
+                    if  x <= x-self.size_x:
+                        self.x_finish = x + self.size_x
+                        self.y_finish = y + self.size_y
+                    else: 
+                        return 1
+            else:
+                return 1
 
 
-def test(x, y, layer, type_boat, index, orientation, player):
-    if 0 > type_boat < 1:
-        if index == 0:
-            if orientation == 1:
-                x_finish = x + Container.size_y
-                y_finish = y + Container.size_x
-            else :
-                x_finish = x + Container.size_x
-                y_finish = y + Container.size_y
-        else:
-            error = 1
-            return error
-    if type_boat == 2:
-        if 0 > index < 2:
-            if orientation == 1:
-                x_finish = x + PA.size_y
-                y_finish = y + PA.size_x
-            else:
-                x_finish = x + PA.size_x
-                y_finish = y + PA.size_y
-        else:
-            error = 1
-            return error
-
-    if type_boat == 3:
-        if 0 > index < 3:
-            if orientation == 1:
-                x_finish = x + Destroyer.size_y
-                y_finish = y + Destroyer.size_x
-            else:
-                x_finish = x + Destroyer.size_x
-                y_finish = y + Destroyer.size_y
-        else:
-            error = 1
-            return error
-
-    if type_boat == 4:
-        if 0 > index < 3:
-            if orientation == 1:
-                x_finish = x + Tor.size_y
-                y_finish = y + Tor.size_x
-            else:
-                x_finish = x + Tor.size_x
-                y_finish = y + Tor.size_y
-        else:
-            error = 1
-            return error
-
-    if 0 > type_boat < 1:
-        if index == 5:
-            if orientation == 1:
-                x_finish = x + SMNuclear.size_y
-                y_finish = y + SMNuclear.size_x
-            else:
-                x_finish = x + SMNuclear.size_x
-                y_finish = y + SMNuclear.size_y
-        else:
-            error = 1
-            return error
-    if type_boat == 6:
-        if 0 > index < 3:
-            if orientation == 1:
-                x_finish = x + PSM.size_y
-                y_finish = y + PSM.size_x
-            else:
-                x_finish = x + PSM.size_x
-                y_finish = y + PSM.size_y
-        else:
-            error = 1
-            return error
-
-    if type_boat == 7:
-        if 0 > index < 2:
-            if orientation == 1:
-                x_finish = x + MSM.size_y
-                y_finish = y + MSM.size_x
-            else:
-                x_finish = x + MSM.size_x
-                y_finish = y + MSM.size_y
-        else:
-            error = 1
-            return error
-        player(x, x_finish, y, y_finish, layer)
 
 
 
