@@ -61,7 +61,7 @@ class Tor:
         self.layer = layer
 
 
-def test(self, x, y, layer, type_boat, index , orientation):
+def test(x, y, layer, type_boat, index, orientation, player):
     if 0 > type_boat < 1:
         if index == 0:
             if orientation == 1:
@@ -143,6 +143,7 @@ def test(self, x, y, layer, type_boat, index , orientation):
         else:
             error = 1
             return error
+        player(x, x_finish, y, y_finish, layer)
 
 
 
