@@ -124,7 +124,7 @@ def ClientSend(code: int, data: str):
     CLIENT.send(bytesmsg)
 
 
-# replaceMultiple(list[i], ["[", "]", '"', "'"], "")
+#replaceMultiple(list[i], ["[", "]", '"', "'"], "")
 def replaceMultiple(mainString, toBeReplaces, newString):
     """Iterate over the strings to be replaced."""
     for elem in toBeReplaces:
