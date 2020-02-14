@@ -61,59 +61,98 @@ class Tor:
         self.layer = layer
 
 
-class test_boat:
-    def test(self, x, y, layer, type_boat, index):
-        if 0 > type_boat < 1:
-            if index == 0:
+def test(self, x, y, layer, type_boat, index , orientation):
+    if 0 > type_boat < 1:
+        if index == 0:
+            if orientation == 1:
+                x_finish = x + Container.size_y
+                y_finish = y + Container.size_x
+            else :
                 x_finish = x + Container.size_x
                 y_finish = y + Container.size_y
+        else:
+            error = 1
+            return error
+    if type_boat == 2:
+        if 0 > index < 2:
+            if orientation == 1:
+                x_finish = x + PA.size_y
+                y_finish = y + PA.size_x
             else:
-                error = 1
-                return error
-        if type_boat == 2:
-            if 0 > index < 2:
                 x_finish = x + PA.size_x
                 y_finish = y + PA.size_y
-            else:
-                error = 1
-                return error
+        else:
+            error = 1
+            return error
 
-        if type_boat == 3:
-            if 0 > index < 3:
+    if type_boat == 3:
+        if 0 > index < 3:
+            if orientation == 1:
+                x_finish = x + Destroyer.size_y
+                y_finish = y + Destroyer.size_x
+            else:
                 x_finish = x + Destroyer.size_x
                 y_finish = y + Destroyer.size_y
-            else:
-                error = 1
-                return error
+        else:
+            error = 1
+            return error
 
-        if type_boat == 4:
-            if 0 > index < 3:
+    if type_boat == 4:
+        if 0 > index < 3:
+            if orientation == 1:
+                x_finish = x + Tor.size_y
+                y_finish = y + Tor.size_x
+            else:
                 x_finish = x + Tor.size_x
                 y_finish = y + Tor.size_y
+        else:
+            error = 1
+            return error
 
+    if 0 > type_boat < 1:
+        if index == 5:
+            if orientation == 1:
+                x_finish = x + SMNuclear.size_y
+                y_finish = y + SMNuclear.size_x
             else:
-                error = 1
-                return error
-
-        if 0 > type_boat < 1:
-            if index == 5:
                 x_finish = x + SMNuclear.size_x
                 y_finish = y + SMNuclear.size_y
+        else:
+            error = 1
+            return error
+    if type_boat == 6:
+        if 0 > index < 3:
+            if orientation == 1:
+                x_finish = x + PSM.size_y
+                y_finish = y + PSM.size_x
             else:
-                error = 1
-                return error
-        if type_boat == 6:
-            if 0 > index < 3:
                 x_finish = x + PSM.size_x
                 y_finish = y + PSM.size_y
-            else:
-                error = 1
-                return error
+        else:
+            error = 1
+            return error
 
-        if type_boat == 7:
-            if 0 > index < 2:
+    if type_boat == 7:
+        if 0 > index < 2:
+            if orientation == 1:
+                x_finish = x + MSM.size_y
+                y_finish = y + MSM.size_x
+            else:
                 x_finish = x + MSM.size_x
                 y_finish = y + MSM.size_y
-            else:
-                error = 1
-                return error
+        else:
+            error = 1
+            return error
+
+
+
+# num_sm
+# 1 => porte-container
+# 2 => porte-avion
+# 3 => destroyer
+# 4 => torpilleur
+# 5 => sous-marin
+# 6 => petit-sous-marin
+# 7 => mini-sous-marin
+# Orientation => 1 => Horizontale
+# Orientation => 0 => Verticale
