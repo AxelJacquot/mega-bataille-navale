@@ -8,7 +8,6 @@ if __name__ == "__main__":
 
     app = QApplication(sys.argv)
     engine = QQmlApplicationEngine()
-
     # Expose the Python object to QML
     context = engine.rootContext()
 
