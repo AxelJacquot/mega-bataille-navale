@@ -1,13 +1,14 @@
 language: python
 python:
   - "3.8"
+  - "3.7"
 # command to install dependencies
 install:
   - pip3 install -r requirements.txt
 
 # command to run tests
 script:
-  - pytest --cov=hello 
+  - pytest --cov=src 
 #Command to use coverage 
 after_success:
   - coveralls
