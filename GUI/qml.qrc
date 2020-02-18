@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>OurFloor.qml</file>
+        <file>EnemiFloor.qml</file>
+        <file>OurSide.qml</file>
+        <file>EnnemiSide.qml</file>
+        <file>Chat.qml</file>
+        <file>MenuBoat.qml</file>
+        <file>Boat.qml</file>
+    </qresource>
+</RCC>
