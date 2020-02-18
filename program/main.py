@@ -6,7 +6,7 @@ from program.Class_defend import defend
 
 def main():
     x = 0
-    y = 0 
+    y = 0
     layer = 0
     player1 = player()
     test1 = player1.map.PSM(x,y,layer, 4, 2, 0, player1)

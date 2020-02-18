@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
-=======
 from program.sous_marin import SM, SMNuclear, PSM, MSM
 from program.bateau import Boat, Container, Destroyer, PA, Tor
->>>>>>> Stashed changes
 import numpy as np
 
 

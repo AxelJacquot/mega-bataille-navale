@@ -1,4 +1,3 @@
-
 from program.Class_Map import Map
 from program.bateau import Boat
 from program.sous_marin import SM
