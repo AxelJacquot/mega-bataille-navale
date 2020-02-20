@@ -2,6 +2,7 @@ from program.Class_player import player, map_allied
 
 
 class defend:
+<<<<<<< HEAD
     def __init__(self):
         self.touch = 0
 
@@ -23,3 +24,12 @@ class defend:
                         else:
                             pass
             return self.touch
+=======
+    def case_tire_1(self, x, y, layer, player):
+        if player.map_allied[layer, y, x] != 0:
+            player.map_allied[layer, y, x] = 9
+            self.touch = 1
+        else:
+            self.touch = 0
+        return self.touch
+>>>>>>> Operation_application

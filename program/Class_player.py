@@ -72,7 +72,11 @@ class player:
                                 self.error = 1
                                 return self.error
                             else:
+<<<<<<< HEAD
                                 self.map_allied[layer, y, x] = type_boat
+=======
+                                 self.map_allied[layer, y, x] = type_boat
+>>>>>>> Operation_application
         if self.error == 1:
             return 1
 # num_sm
