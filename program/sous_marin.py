@@ -1,11 +1,3 @@
-class SM:
-    def __init__(self):
-        self.PSM_1 = PSM()
-        self.MSM_1 = MSM()
-        self.SMNuclear_1 = SMNuclear()
-
-
-
 class SMNuclear:
     def __init__(self, size_x=6, size_y=1, layer=2):
         self.size_x = size_x
