@@ -13,7 +13,7 @@ def main():
     test3 = player1.PSM(6, 5, 2, 7, 0, 1)
 
     test1 = defend()
-    test2 = test1.case_tire_1(4, 2, 2, 1, player1)
+    test2 = test1.case_tire_1(4, 2, 2, 1)
     pprint(player1.map_allied)
     print(test2)
 

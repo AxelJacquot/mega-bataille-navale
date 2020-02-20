@@ -1,14 +1,16 @@
-from program.sous_marin import SM, SMNuclear, PSM, MSM
-from program.bateau import Boat, Container, Destroyer, PA, Tor
+from program.sous_marin import SMNuclear, PSM, MSM
+from program.bateau import Container, Destroyer, PA, Tor
 import numpy as np
+
+map_allied = np.zeros(225 * 3)
+map_allied.resize((3, 15, 15))
 
 
 class player:
     def __init__(self, size_x=15, size_y=15, layer=2):
         self.name = ""
         self.error = 0
-        self.map_allied = np.zeros(225 * 3)
-        self.map_allied.resize((3, 15, 15))
+        self.map_allied = map_allied
         self.size_x = size_x
         self.size_y = size_y
         self.layer = layer
@@ -53,19 +55,7 @@ class player:
             self.x_finish = self.MSM_1.x_finish
 
         if self.error is None:
-            if 0 > x_begin > 15:
-                self.error = 1
-                return self.error
-            elif 0 > self.x_finish > 15:
-                self.error = 1
-                return self.error
-            elif 0 > self.y_finish > 15:
-                self.error = 1
-                return self.error
-            elif 0 > self.x_finish > 15:
-                self.error = 1
-                return self.error
-            elif 0 > layer > 3:
+            if 0 > layer > 3:
                 self.error = 1
                 return self.error
             elif y_begin > self.y_finish:
@@ -82,20 +72,7 @@ class player:
                                 self.error = 1
                                 return self.error
                             else:
-                                if type_boat == 1:
-                                    self.map_allied[layer, y, x] = 1
-                                if type_boat == 2:
-                                    self.map_allied[layer, y, x] = 2
-                                if type_boat == 3:
-                                    self.map_allied[layer, y, x] = 3
-                                if type_boat == 4:
-                                    self.map_allied[layer, y, x] = 4
-                                if type_boat == 5:
-                                    self.map_allied[layer, y, x] = 5
-                                if type_boat == 6:
-                                    self.map_allied[layer, y, x] = 6
-                                if type_boat == 7:
-                                    self.map_allied[layer, y, x] = 7
+                                self.map_allied[layer, y, x] = type_boat
         if self.error == 1:
             return 1
 # num_sm

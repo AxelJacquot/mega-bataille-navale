@@ -1,17 +1,3 @@
-class Boat:
-    def __init__(self, size_x=0, size_y=0, layer=1):
-        self.size_x = size_x
-        self.size_y = size_y
-
-        self.layer = layer
-        self.container = Container()
-
-        self.PA = PA()
-
-        self.destroyer = Destroyer()
-        self.Tor = Tor()
-
-
 class Container:
     def __init__(self, size_x=5, size_y=2, layer=1):
         self.size_x = size_x

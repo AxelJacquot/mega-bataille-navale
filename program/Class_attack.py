@@ -21,7 +21,6 @@ class attack:
             for i in range(number_case):
                 for j in range(number_case):
                     self.map_enemy[layer, y + j, x + i] = 9
-
                 return 1
         else:
             return 1
