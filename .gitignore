@@ -6,3 +6,5 @@ venv/
 program/.vscode/
 
 venv/
+
+.vscode/
