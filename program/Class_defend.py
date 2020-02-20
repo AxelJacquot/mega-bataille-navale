@@ -6,6 +6,7 @@ class defend:
     def __init__(self):
         self.touch = 0
 
+# need a slot
     def case_tire_1(self, x, y, layer, tir):
 
         if tir == 1:

@@ -24,7 +24,11 @@ class player:
         self.MSM_1 = MSM()
         self.SMNuclear_1 = SMNuclear()
 
+# need a slot
     def PSM(self, x_begin, y_begin, layer, type_boat, index, orientation):
+        if 0 > layer > 3:
+            self.error = 1
+            return self.error
         if type_boat == 1:
             self.error = self.container.place_boat(x_begin, y_begin, type_boat, index, orientation)
             self.y_finish = self.container.y_finish
@@ -55,10 +59,7 @@ class player:
             self.x_finish = self.MSM_1.x_finish
 
         if self.error is None:
-            if 0 > layer > 3:
-                self.error = 1
-                return self.error
-            elif y_begin > self.y_finish:
+            if y_begin > self.y_finish:
                 self.error = 1
                 return self.error
             elif x_begin > self.x_finish:
