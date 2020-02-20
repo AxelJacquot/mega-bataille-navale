@@ -82,20 +82,7 @@ class player:
                                 self.error = 1
                                 return self.error
                             else:
-                                if type_boat == 1:
-                                    self.map_allied[layer, y, x] = 1
-                                if type_boat == 2:
-                                    self.map_allied[layer, y, x] = 2
-                                if type_boat == 3:
-                                    self.map_allied[layer, y, x] = 3
-                                if type_boat == 4:
-                                    self.map_allied[layer, y, x] = 4
-                                if type_boat == 5:
-                                    self.map_allied[layer, y, x] = 5
-                                if type_boat == 6:
-                                    self.map_allied[layer, y, x] = 6
-                                if type_boat == 7:
-                                    self.map_allied[layer, y, x] = 7
+                                 self.map_allied[layer, y, x] = type_boat
         if self.error == 1:
             return 1
 # num_sm
