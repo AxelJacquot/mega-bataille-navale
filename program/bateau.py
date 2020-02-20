@@ -1,5 +1,3 @@
-
-
 class Boat:
     def __init__(self, size_x=0, size_y=0, layer=1):
         self.size_x = size_x
@@ -22,23 +20,23 @@ class Container:
         self.x_finish = 0
         self.y_finish = 0
 
-    def place_boat(self, x , y, type_boat,index, orientation):
+    def place_boat(self, x, y, type_boat, index, orientation):
         if type_boat == 1:
-            if 0 >= index < 2:
+            if 1 > index >= 0:
                 if orientation == 1:
-                    if  x <= x-self.size_y:
+                    if x + self.size_y <= 15 and (y >= 0) and (x >= 0) and y + self.size_x <= 15:
                         self.x_finish = x + self.size_y
                         self.y_finish = y + self.size_x
-                    else:
-                        return 1
-                else:
-                    if  x <= x-self.size_x:
+
+                elif orientation == 0:
+                    if x + self.size_x <= 15 and (y >= 0) and (x >= 0) and y + self.size_y <= 15:
                         self.x_finish = x + self.size_x
                         self.y_finish = y + self.size_y
-                    else: 
-                        return 1
+                else:
+                    return 1
             else:
                 return 1
+
 
 class Destroyer:
     def __init__(self, size_x=4, size_y=1, layer=1):
@@ -48,23 +46,23 @@ class Destroyer:
         self.x_finish = 0
         self.y_finish = 0
 
-    def place_boat(self, x , y, type_boat,index, orientation):
+    def place_boat(self, x, y, type_boat, index, orientation):
         if type_boat == 2:
-            if 0 >= index < 2:
+            if 3 > index >= 0:
                 if orientation == 1:
-                    if  x <= x-self.size_y:
+                    if x + self.size_y <= 15 and (y >= 0) and (x >= 0) and y + self.size_x <= 15:
                         self.x_finish = x + self.size_y
                         self.y_finish = y + self.size_x
-                    else:
-                        return 1
-                else:
-                    if  x <= x-self.size_x:
+
+                elif orientation == 0:
+                    if x + self.size_x <= 15 and (y >= 0) and (x >= 0) and y + self.size_y <= 15:
                         self.x_finish = x + self.size_x
                         self.y_finish = y + self.size_y
-                    else: 
-                        return 1
+                else:
+                    return 1
             else:
                 return 1
+
 
 class PA:
     def __init__(self, size_x=5, size_y=1, layer=1):
@@ -74,23 +72,23 @@ class PA:
         self.x_finish = 0
         self.y_finish = 0
 
-    def place_boat(self, x , y, type_boat,index, orientation):
+    def place_boat(self, x, y, type_boat, index, orientation):
         if type_boat == 3:
-            if 0 >= index < 3:
+            if 1 > index >= 0:
                 if orientation == 1:
-                    if  x <= x-self.size_y:
+                    if x + self.size_y <= 15 and (y >= 0) and (x >= 0) and y + self.size_x <= 15:
                         self.x_finish = x + self.size_y
                         self.y_finish = y + self.size_x
-                    else:
-                        return 1
-                else:
-                    if  x <= x-self.size_x:
+
+                elif orientation == 0:
+                    if x + self.size_x <= 15 and (y >= 0) and (x >= 0) and y + self.size_y <= 15:
                         self.x_finish = x + self.size_x
                         self.y_finish = y + self.size_y
-                    else: 
-                        return 1
+                else:
+                    return 1
             else:
                 return 1
+
 
 class Tor:
 
@@ -100,28 +98,23 @@ class Tor:
         self.layer = layer
         self.x_finish = 0
         self.y_finish = 0
-        
-    def place_boat(self, x , y, type_boat,index, orientation):
+
+    def place_boat(self, x, y, type_boat, index, orientation):
         if type_boat == 4:
-            if 0 >= index < 3:
+            if 3 > index >= 0:
                 if orientation == 1:
-                    if  x <= x-self.size_y:
+                    if x + self.size_y <= 15 and (y >= 0) and (x >= 0) and y + self.size_x <= 15:
                         self.x_finish = x + self.size_y
                         self.y_finish = y + self.size_x
-                    else:
-                        return 1
-                else:
-                    if  x <= x-self.size_x:
+
+                elif orientation == 0:
+                    if x + self.size_x <= 15 and (y >= 0) and (x >= 0) and y + self.size_y <= 15:
                         self.x_finish = x + self.size_x
                         self.y_finish = y + self.size_y
-                    else: 
-                        return 1
+                else:
+                    return 1
             else:
                 return 1
-
-
-
-
 
 # num_sm
 # 1 => porte-container
