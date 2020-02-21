@@ -1,4 +1,4 @@
-from program.main import *
+from venv.main import *
 
 
 def test_main():

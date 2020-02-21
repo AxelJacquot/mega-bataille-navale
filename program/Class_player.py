@@ -24,7 +24,16 @@ class player:
         self.MSM_1 = MSM()
         self.SMNuclear_1 = SMNuclear()
 
+# need a slot
+    def cleanBoat(self, y_begin, y_finish, x_begin, x_finish, layer, type_boat):
+        for y in range(y_begin, y_finish + 1):
+            for x in range(x_begin, x_finish + 1):
+                if y_begin <= y <= y_finish and x_begin <= x <= x_finish:
+                    if self.map_allied[layer, y, x] == type_boat:
+                        self.map_allied[layer, y, x] = 0
+
     def PSM(self, x_begin, y_begin, layer, type_boat, index, orientation):
+<<<<<<< HEAD
         """
             Fuck x_begin : first position of the boat on x axe.
                  y_begin : first position of the boat on y axe.
@@ -41,6 +50,11 @@ class player:
                 Orientation => 0 => Verticale
             PS :x_max = 15 y_max = 15
         """
+=======
+        if 0 > layer > 3:
+            self.error = 1
+            return self.error
+>>>>>>> db4476d15f87a93d028b18c354af154b889c9c77
         if type_boat == 1:
             self.error = self.container.place_boat(x_begin, y_begin, type_boat, index, orientation)
             self.y_finish = self.container.y_finish
@@ -71,18 +85,15 @@ class player:
             self.x_finish = self.MSM_1.x_finish
 
         if self.error is None:
-            if 0 > layer > 3:
-                self.error = 1
-                return self.error
-            elif y_begin > self.y_finish:
+            if y_begin > self.y_finish:
                 self.error = 1
                 return self.error
             elif x_begin > self.x_finish:
                 self.error = 1
                 return self.error
             else:
-                for y in range(15):
-                    for x in range(15):
+                for y in range(y_begin, self.y_finish + 1):
+                    for x in range(x_begin, self.x_finish + 1):
                         if y_begin <= y <= self.y_finish and x_begin <= x <= self.x_finish:
                             if self.map_allied[layer, y, x] != 0:
                                 self.error = 1
@@ -90,7 +101,12 @@ class player:
                             else:
                                 self.map_allied[layer, y, x] = type_boat
         if self.error == 1:
+            self.cleanBoat(y_begin, self.y_finish, x_begin, self.x_finish, layer, type_boat)
             return 1
+
+
+
+
 # num_sm
 # 1 => porte-container
 # 2 => porte-avion
