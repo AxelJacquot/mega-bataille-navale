@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------------
-# Name:        ArchiComm
-# Purpose:
+# Name:        Mega bataille navale
+# Purpose:     Student project
 #
 # Author:      Thomas
 #
@@ -16,17 +16,34 @@ import threading
 import time
 import datetime
 from multiprocessing import Queue
+from PySide2.QtCore import Signal, Slot, QObject
 
-from client import connectClient, clientsend, exitclient
+from client import Client
 
 
 status = Queue(maxsize=0)
 statusclient = Queue(maxsize=0)
 
 
-def running():
+@Slot(str)
+def print_pseudo(pseudo):
+    print("Pseudo recu:", pseudo)
+
+
+if __name__ == "__main__":
     """Run of the main thread."""
     statusconnect = 0
+
+    # Tread client
+    data_q = statusclient
+    thread1 = Client(data_q)
+    thread1.start()
+    thread1.signal_pseudo.connect(print_pseudo)
+    ip = "10.33.1.246"
+    port = 5454
+    pseudo = "Michel"
+    thread1.connect(ip, port, pseudo)
+
     while 1:
         # interface code client
         if not statusclient.empty():
@@ -36,7 +53,7 @@ def running():
                 print("receive_client message: ", receive_client[1])
                 ####
             elif receive_client[0] == "Connclient":
-                print("New client connect")
+                print("New client connect", receive_client[1])
                 ####
 
         # interface code window
@@ -44,20 +61,19 @@ def running():
             data_receive = status.get()
             print("Sys msg from Frame: ", data_receive)
 
+            # ask connection
             if data_receive[0] == "Connect":
                 # data_receive: IP, Port, Pseudo
                 print("Start processus client")
                 statusclient.put(
-                    ["RunClient", data_receive[1], data_receive[2]],
+                    ["Connect", data_receive[1], data_receive[2]],
                     data_receive[3],
                     True,
                 )
                 statusconnect = 1
-            elif data_receive[0] == "Pseudo":
-                clientsend(11, data_receive[1])
 
             elif data_receive[0] == "text" and statusconnect == 1:
-                clientsend(7, data_receive[1])
+                Client.clientsend(7, data_receive[1])
             elif data_receive[0] == "text" and statusconnect == 0:
                 print(
                     "Try to send data but not connected to server at ",
@@ -65,28 +81,16 @@ def running():
                 )
 
             if data_receive == "exit":
-                exitclient()
+                Client.exitclient()
                 print("Main close")
                 break
         else:
             time.sleep(0.1)
 
-
-# Tread interface window
-thread1 = threading.Thread(target=running, args=())
-thread1.start()
-# Tread client
-thread2 = threading.Thread(target=connectClient, args=(statusclient,))
-thread2.start()
-
-# run interface window
-run_window(status)
-
-# Closing
-thread1.join()
-thread2.join()
-status.close()
-statusclient.close()
+    # Closing
+    thread1.join()
+    status.close()
+    statusclient.close()
 
 # Sous Windows il faut mettre ce programme en pause (inutile sous Linux)
 # os.system("pause")

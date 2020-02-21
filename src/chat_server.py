@@ -17,7 +17,6 @@
 import socket
 import threading
 import sys
-import time
 import datetime
 import simplelogging
 from typing import List
@@ -78,31 +77,32 @@ def clientthread(conn, addr):
 
 def treatmentConnection(conn, addr, pseudo):
     """Treat new client connection."""
+    global list_of_pseudo
     lenght = 0
     log.info("<" + addr[0] + "> " + ": " + pseudo + " connected")
-    # ##### send pseudo list to the new client ######
-    bytesmsg = bytearray(3)
-    bytesmsg[0] = 1
+    print("list_of_pseudo:", list_of_pseudo)
     if list_of_pseudo != []:
+        # ##### send pseudo list to the new client ######
+        bytesmsg = bytearray(3)
+        bytesmsg[0] = 1
         for element in list_of_pseudo:
             lenght += len(element)
-    bytesmsg[1] = lenght
-    for pseudoelem in list_of_pseudo:
-        pseudoelem = pseudoelem + ","  # add "," in the lenght of message
-        bytesmsg[1] += 1
-        bytesmsg.extend(bytearray(pseudoelem, "utf-8"))
-    sendmsg(bytesmsg, conn, modebroadcast=False)
+        bytesmsg[1] = lenght
+        for pseudoelem in list_of_pseudo:
+            pseudoelem = pseudoelem + ","  # add "," in the lenght of message
+            bytesmsg[1] += 1
+            bytesmsg.extend(bytearray(pseudoelem, "utf-8"))
+        sendmsg(bytesmsg, conn, modebroadcast=False)
+        log.info("List send pseudo:%s", list_of_pseudo)
+        # send the new pseudo to the other client
+        bytesmsg = bytearray(3)
+        bytesmsg[0] = 1
+        lenght = len(pseudo)
+        bytesmsg[1] = lenght
+        bytesmsg.extend(bytearray(pseudo, "utf-8"))
+        sendmsg(bytesmsg, conn, modebroadcast=True)
+        bytesmsg = bytearray(3)
     list_of_pseudo.append(pseudo)
-    log.info("List pseudo:%s", list_of_pseudo)
-    # send the new pseudo to the other client
-    bytesmsg = bytearray(3)
-    bytesmsg[0] = 1
-    lenght = len(pseudo)
-    bytesmsg[1] = lenght
-    bytesmsg[2] = pseudo
-    sendmsg(bytesmsg, conn, modebroadcast=True)
-    bytesmsg = bytearray(3)
-
     return pseudo
 
 
@@ -138,16 +138,20 @@ def sendmsg(message: bytearray, connection, modebroadcast):
     # message = message.encode("utf8")
     # broadcast send to everyone expect transmitter
     for clients in list_of_clients:
+
         if modebroadcast:
             if clients != connection:
                 try:
+                    log.info(
+                        "MSG modebroadcast:%d =%s", modebroadcast, message
+                    )
                     clients.send(message)
                 except:
                     print(datetime.datetime.now(), " ", clients, " Leave")
                     clients.close()
                     remove(clients)
         elif clients == connection:  # mode private message
-            print("MESSAGE SEND:", message)
+            log.info("MSG modebroadcast:%d =%s", modebroadcast, message)
             clients.send(message)
             break
 

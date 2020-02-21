@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------------
-# Name:        ArchiComm
-# Purpose:
+# Name:        Mega bataille navale
+# Purpose:     Student project
 #
 # Author:      Thomas
 #
@@ -11,129 +11,137 @@
 
 # -*- coding: utf-8 -*-
 # !/usr/bin/env python
-
+import mock
 import socket
+import threading
 import simplelogging
-from PySide.QtCore import Signal, Slot
+from PySide2.QtCore import Signal, Slot, QObject
 
 log = simplelogging.get_logger()
 status_client = False
 
 
-class Client:
+class Client(QObject, threading.Thread):
     """Make interface TPC client workable by a main code."""
 
-    signal = Signal()
-    status_client = False
+    signal_connect = Signal(bool)
+    signal_pseudo = Signal(str)
+    signal_shot = Signal(str)
 
-    def liveofclient(self, data_q):
+    def __init__(self, data_q):
+        super(Client, self).__init__()
+        """Init the Thread of the Client."""
+        threading.Thread.__init__(self)
+        # self.ip_port = ip_port
+        self.data_q = data_q
+        self.status_client = False
+        self.data_rcv = ""
+        self.data_receive = []
+        self.message = ""
+        self.success = False
+        print("Init done")
+
+    def connect(self, ip, port, pseudo):
+        """Process connection."""
+        self.status_client = True
+        self.ip_address = ip
+        self.port = port
+        self.pseudo = pseudo
+        success = self.tryconnection()
+        if success:
+            log.info("Connection done, run client")
+            self.Life()
+            self.signal_connect.emit(True)
+        else:
+            log.error("Connect fail")
+            self.signal_connect.emit(False)
+
+    def Life(self):
         """Life of all the client."""
-        print("Client ok")
-        global client_socket
-        global status_client
-        status_client = True
-        data_rcv = ""
-        data_receive = []
-        message = ""
-        success = False
-
-        # process connection
-        while status_client:
-            if not data_q.empty():
-                success = self.tryconnection(data_q)
-                if success:
-                    break
-                else:
-<<<<<<< HEAD:client.py
-                    log.error("connect fail")
-
         # process connection done, life of communication
         while status_client:
             try:
-                data_rcv = client_socket.recv(2048)
+                self.data_rcv = self.client_socket.recv(2048)
             except OSError:
                 pass  # no data receive
-            if data_rcv:
+            if self.data_rcv:
                 # message = data_rcv.decode()
-                ID = data_rcv[0]
-                lenght = data_rcv[1]
-                print("ID receive:", data_rcv[0])
-                print("lenght receive:", data_rcv[1])
+                self.ID = self.data_rcv[0]
+                self.lenght = self.data_rcv[1]
+                print("ID receive:", self.data_rcv[0])
+                print("lenght receive:", self.data_rcv[1])
                 for i in range(lenght + 1):
-                    message += chr(data_rcv[i + 2])
-                message = message[1:]
-                print("Message rcv:", message)
+                    self.message += chr(self.data_rcv[i + 2])
+                self.message = self.message[1:]
+                print("Message rcv:", self.message)
 
                 # receive new client connect in game
-                if ID == 1:
-                    pseudos = message.split(",")
-                    for pseudo in pseudos:
+                if self.ID == 1:
+                    self.pseudos = self.message.split(",")
+                    for pseudo in self.pseudos:
                         if pseudo != "":
                             print("pseudo[", i, "]=", pseudo)
-                            data_q.put(["Connclient", pseudo])
+                            self.data_q.put(["Connclient", pseudo])
+                            self.signal_pseudo.emit(pseudo)
                     message = ""
                 elif ID == 2:
-                    print("Reception attack")
+                    print("Reception attack", message)
+                    message = ""
                 elif ID == 3:
-                    print("Reception reponce attack")
+                    print("Reception reponce attack", message)
+                    message = ""
                 # receive new classique message
                 elif ID == 5:
-                    data_q.put(["rcv", message, ""], True)
-                    message = ""
+                    self.data_q.put(["rcv", self.message, ""], True)
+                    self.message = ""
                 data_rcv = False
-        client_socket.close()
+        self.client_socket.close()
         print("Client close")
 
-    def tryconnection(self, data_q):
-        data_receive = data_q.get(False)
-        if data_receive[0] == "RunClient":
-            client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            client_socket.setblocking(0)
-            client_socket.settimeout(10)
-            ip_address = data_receive[1]
-            port = data_receive[2]
-            pseudo = data_receive[3]
-            catcherror = 0
-
-            try:
-                client_socket.connect((ip_address, port))
-
-            except socket.gaierror as e:
-                print(
-                    "Address-related error connecting to CLIENT: ",
-                    e,
-                    " Fail to connect to: ",
-                    ip_address,
-                    port,
-                )
-                catcherror = 1
-
-            except OSError as e:
-                print(
-                    "Connection error: ",
-                    e,
-                    " Fail to connect to: ",
-                    ip_address,
-                    port,
-                )
-                catcherror = 1
-
-            if catcherror == 0:
-                self.clientsend(1, pseudo)
-                print("We are CONNECT")
-                return True
-            else:
-                print("error has catch")
+    def tryconnection(self):
+        self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.client_socket.setblocking(0)
+        self.client_socket.settimeout(10)
+        catcherror = 0
+        ip_address = self.ip_address
+        port = 5454
+        try:
+            self.client_socket.connect((ip_address, port))
+        except socket.gaierror as e:
+            print(
+                "Address-related error connecting to CLIENT: ",
+                e,
+                " Fail to connect to: ",
+                self.ip_address,
+                self.port,
+            )
+            catcherror = 1
+        except OSError as e:
+            print(
+                "Connection error: ",
+                e,
+                " Fail to connect to: ",
+                self.ip_address,
+                self.port,
+            )
+            catcherror = 1
+        if catcherror == 0:
+            # send pseudo to the server
+            self.clientsend(1, self.pseudo)
+            print("We are CONNECT")
+            return True
+        else:
+            print("error has catch")
+            return False
 
     def clientsend(self, code: int, data: str):
         """Send data to server."""
-        global client_socket
         bytesmsg = bytearray(3)
         bytesmsg[0] = code
         bytesmsg[1] = len(data)
         bytesmsg.extend(data.encode())
         print("data:", data, " bytesmsg:", bytesmsg)
-        client_socket.send(bytesmsg)
+        self.client_socket.send(bytesmsg)
 
     # replacemultiple(list[i], ["[", "]", '"', "'"], "")
     def replacemultiple(self, mainstring, be_renplace, newstring):
@@ -147,74 +155,4 @@ class Client:
 
     def exitclient(self):
         """Desactive main function of the client (liveofclient)."""
-        global status_client
-        status_client = False
-=======
-                    print("error has catch")
-
-    # process connection done, life of communication
-    while status_client:
-        try:
-            data_rcv = CLIENT.recv(2048)
-        except OSError:
-            pass  # no data receive
-        if data_rcv:
-            # message = data_rcv.decode()
-            ID = data_rcv[0]
-            lenght = data_rcv[1]
-            print("ID receive:", data_rcv[0])
-            print("lenght receive:", data_rcv[1])
-            for i in range(lenght + 1):
-                message += chr(data_rcv[i + 2])
-            message = message[1:]
-            print("Message rcv:", message)
-
-            # receive new client connect in game
-            if ID == 1:
-                pseudos = message.split(",")
-                print("pseudos:", pseudos)
-                for pseudo in pseudos:
-                    if pseudo != "":
-                        print("pseudo[", i, "]=", pseudo)
-                        data_q.put(["Connclient", pseudo])
-                message = ""
-            elif ID == 2:
-                print("Reception attack")
-            elif ID == 3:
-                print("Reception reponce attack")
-            # receive new classique message
-            elif ID == 5:
-                data_q.put(["rcv", message, ""], True)
-                message = ""
-            data_rcv = False
-    CLIENT.close()
-    print("Client close")
-
-
-def ClientSend(code: int, data: str):
-    """Send data to server."""
-    global CLIENT
-    bytesmsg = bytearray(3)
-    bytesmsg[0] = code
-    bytesmsg[1] = len(data)
-    bytesmsg.extend(data.encode())
-    print("data:", data, " bytesmsg:", bytesmsg)
-    CLIENT.send(bytesmsg)
-
-
-#replaceMultiple(list[i], ["[", "]", '"', "'"], "")
-def replaceMultiple(mainString, toBeReplaces, newString):
-    """Iterate over the strings to be replaced."""
-    for elem in toBeReplaces:
-        # Check if string is in the main string
-        if elem in mainString:
-            # Replace the string
-            mainString = mainString.replace(elem, newString)
-    return mainString
-
-
-def exitClient():
-    """Desactive main function of the client (connectClient)."""
-    global status_client
-    status_client = False
->>>>>>> 4989ae820aada9f70acdacc23b6ef8e1c9ee9599:src/client.py
+        self.status_client = False
