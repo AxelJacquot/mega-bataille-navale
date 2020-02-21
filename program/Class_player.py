@@ -25,6 +25,22 @@ class player:
         self.SMNuclear_1 = SMNuclear()
 
     def PSM(self, x_begin, y_begin, layer, type_boat, index, orientation):
+        """
+            Fuck x_begin : first position of the boat on x axe.
+                 y_begin : first position of the boat on y axe.
+                 Type boat
+                    1 => porte-container
+                    2 => porte-avion
+                    3 => destroyer
+                    4 => torpilleur
+                    5 => sous-marin
+                    6 => petit-sous-marin
+                    7 => mini-sous-marin
+                index : number of the ship
+                Orientation => 1 => Horizontale
+                Orientation => 0 => Verticale
+            PS :x_max = 15 y_max = 15
+        """
         if type_boat == 1:
             self.error = self.container.place_boat(x_begin, y_begin, type_boat, index, orientation)
             self.y_finish = self.container.y_finish

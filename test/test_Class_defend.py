@@ -1,12 +1,15 @@
+#mettre des valeurs avec map_allied (valeurs random) si touchée avec 
+# des valeurs différentes de 0 et tester touch
 from program.Class_defend import defend
-from program.Class_player import player
-
-df = defend()
-pl = player(0,1,0,1,1)
+from program.Class_player import player, map_allied
+import numpy as np
 
 def test_case_tire_1():
-    assert df.case_tire_1(0,0,0,pl,1)==0
+    df = defend()
 
+    map_allied[2, 2, 1] = 2 
+    assert df.case_tire_1(1,2,2,1) == 1
 
-def test_case_tire_1():
-    assert df.case_tire_1(0,0,0,pl,2)== None
+    map_allied[2, 2, 1] = 0    
+    assert df.case_tire_1(1,2,2,1) == 0
+    
