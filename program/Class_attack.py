@@ -11,7 +11,7 @@ class attack(QObject):
         self.tir = 0
         self.touch = 0
 
-    def test_tire(self,x, y, layer):
+    def test_tire(self, x, y, layer):
         return 1
 
     @Slot(int, int, int)

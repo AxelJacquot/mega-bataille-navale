@@ -25,6 +25,13 @@ class player:
         self.SMNuclear_1 = SMNuclear()
 
 # need a slot
+    def cleanBoat(self, y_begin, y_finish, x_begin, x_finish, layer, type_boat):
+        for y in range(y_begin, y_finish + 1):
+            for x in range(x_begin, x_finish + 1):
+                if y_begin <= y <= y_finish and x_begin <= x <= x_finish:
+                    if self.map_allied[layer, y, x] == type_boat:
+                        self.map_allied[layer, y, x] = 0
+
     def PSM(self, x_begin, y_begin, layer, type_boat, index, orientation):
         if 0 > layer > 3:
             self.error = 1
@@ -66,8 +73,8 @@ class player:
                 self.error = 1
                 return self.error
             else:
-                for y in range(15):
-                    for x in range(15):
+                for y in range(y_begin, self.y_finish + 1):
+                    for x in range(x_begin, self.x_finish + 1):
                         if y_begin <= y <= self.y_finish and x_begin <= x <= self.x_finish:
                             if self.map_allied[layer, y, x] != 0:
                                 self.error = 1
@@ -75,7 +82,12 @@ class player:
                             else:
                                 self.map_allied[layer, y, x] = type_boat
         if self.error == 1:
+            self.cleanBoat(y_begin, self.y_finish, x_begin, self.x_finish, layer, type_boat)
             return 1
+
+
+
+
 # num_sm
 # 1 => porte-container
 # 2 => porte-avion
