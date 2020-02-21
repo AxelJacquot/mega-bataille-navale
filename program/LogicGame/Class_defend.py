@@ -1,4 +1,4 @@
-from program.Class_player import player, map_allied
+from program.LogicGame.Class_player import player, map_allied
 from PySide2.QtCore import QObject, Signal, Property
 
 class defend(QObject):
