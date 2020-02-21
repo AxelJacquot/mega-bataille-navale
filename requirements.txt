@@ -3,3 +3,5 @@ coverage==5.0.3
 pytest-cov==2.8.1
 coveralls[yaml]==1.10.0
 numpy==1.18.1
+PySide2==5.14.1
+
