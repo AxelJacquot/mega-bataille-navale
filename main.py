@@ -3,7 +3,6 @@ import threading
 import time
 import datetime
 from multiprocessing import Queue
-from PySide2.QtCore import Signal, Slot, QObject
 
 from pprint import pprint
 from program.LogicGame.Class_attack import Attack
@@ -16,12 +15,6 @@ from PySide2.QtQml import QQmlApplicationEngine
 
 status = Queue(maxsize=0)
 statusclient = Queue(maxsize=0)
-
-
-@Slot(str)
-def print_pseudo(pseudo):
-    print("Pseudo recu:", pseudo)
-
 
 if __name__ == "__main__":
     x = 0
