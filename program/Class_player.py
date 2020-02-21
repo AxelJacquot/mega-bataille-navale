@@ -88,7 +88,7 @@ class player:
 
 
 
-# num_sm
+# type boat
 # 1 => porte-container
 # 2 => porte-avion
 # 3 => destroyer
