@@ -33,7 +33,6 @@ class player:
                         self.map_allied[layer, y, x] = 0
 
     def PSM(self, x_begin, y_begin, layer, type_boat, index, orientation):
-<<<<<<< HEAD
         """
             Fuck x_begin : first position of the boat on x axe.
                  y_begin : first position of the boat on y axe.
@@ -50,11 +49,10 @@ class player:
                 Orientation => 0 => Verticale
             PS :x_max = 15 y_max = 15
         """
-=======
+
         if 0 > layer > 3:
             self.error = 1
             return self.error
->>>>>>> db4476d15f87a93d028b18c354af154b889c9c77
         if type_boat == 1:
             self.error = self.container.place_boat(x_begin, y_begin, type_boat, index, orientation)
             self.y_finish = self.container.y_finish
