@@ -8,3 +8,7 @@ program/.vscode/
 venv/
 
 .vscode/
+
+program/LogicGame/__pycache__/
+
+program/Comm/__pycache__/
