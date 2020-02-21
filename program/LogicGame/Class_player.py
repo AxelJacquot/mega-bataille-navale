@@ -1,5 +1,5 @@
-from program.sous_marin import SMNuclear, PSM, MSM
-from program.bateau import Container, Destroyer, PA, Tor
+from program.LogicGame.sous_marin import SMNuclear, PSM, MSM
+from program.LogicGame.bateau import Container, Destroyer, PA, Tor
 import numpy as np
 from PySide2.QtCore import QObject, Slot
 
