@@ -10,7 +10,10 @@ GridLayout{
     columns: 15
     columnSpacing: 0
     rowSpacing: 0
-
+    property int indexFloor: viewEnnemi.currentIndex
+    property int i: 0
+    property int posX: 0
+    property int posY: 0
     Repeater {
         model: 225
         Rectangle {
@@ -23,6 +26,13 @@ GridLayout{
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
                 cursorShape: Qt.OpenHandCursor
                 onClicked: {
+                    i = index
+                    posX = i /15
+                    posY = i % 15
+                    console.log(posX)
+                    console.log(posY)
+                    console.log(indexFloor)
+                    Attack.tire(posX, posY, indexFloor)
                     if (mouse.button === Qt.RightButton)
                         rectEn.color = 'blue';
                     else

@@ -10,6 +10,7 @@ GridLayout{
     rowSpacing: 0
     property string placekey
     property string colorkey
+    property int indexLayer: viewOur.currentIndex
     Repeater {
         model: 225
         ColumnLayout{
@@ -24,18 +25,17 @@ GridLayout{
                 height: 25
                 keys: placekey
                 onDropped: {
-                    console.log(drag.x)
-                    console.log(drag.y)
                     //drag.accepted = false
                     i = index
                     posX = i /15
                     posY = i % 15
-                    console.log(index)
                     console.log(posX)
                     console.log(posY)
-                    /*console.log(root.xBoat)
-                    console.log(root.yBoat)
-                    console.log(root.nameBo)*/
+                    console.log(indexLayer)
+                    console.log(root.typeBoat)
+                    console.log(root.indexBoat)
+                    console.log(root.orientation)
+                    Player.PSM(posX, posY, indexLayer, root.typeBoat, root.indexBoat, root.orientation)
                 }
                 Rectangle {
                     id: dropRectangle

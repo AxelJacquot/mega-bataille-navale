@@ -21,7 +21,9 @@ ColumnLayout {
             text:  qsTr(name)
         }
     }
-    Repeater{
+    GridLayout{
+        columns: nbr
+        Repeater{
         model: nbr
         Item {
             id: boot
@@ -52,6 +54,7 @@ ColumnLayout {
                 }
 
                 onReleased: {
+                    console.log(tile.Drag.active)
                     if(mouse.button === Qt.RightButton & drop == false){
                         sens = !sens
                     }
@@ -59,9 +62,9 @@ ColumnLayout {
                         drop = true
                         parent = tile.Drag.target !== null ? tile.Drag.target : boot
                         //parent = tile.Drag.target
-                        /*root.xBoat = sens ? heightMul : widthMul
-                        root.yBoat = sens ? widthMul : heightMul
-                        root.nameBo = boatName*/
+                        root.typeBoat = typeBoat
+                        root.indexBoat = index
+                        root.orientation = sens
                         tile.Drag.drop()
                     }
                 }
@@ -129,6 +132,8 @@ ColumnLayout {
             }
         }
     }
+    }
+    
 
 
 

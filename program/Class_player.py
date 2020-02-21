@@ -1,13 +1,15 @@
 from program.sous_marin import SMNuclear, PSM, MSM
 from program.bateau import Container, Destroyer, PA, Tor
 import numpy as np
+from PySide2.QtCore import QObject, Slot
 
 map_allied = np.zeros(225 * 3)
 map_allied.resize((3, 15, 15))
 
 
-class player:
+class player(QObject):
     def __init__(self, size_x=15, size_y=15, layer=2):
+        super(player,self).__init__()
         self.name = ""
         self.error = 0
         self.map_allied = map_allied
@@ -24,7 +26,9 @@ class player:
         self.MSM_1 = MSM()
         self.SMNuclear_1 = SMNuclear()
 
+    @Slot(int,int,int,int,int,bool)
     def PSM(self, x_begin, y_begin, layer, type_boat, index, orientation):
+        print(x_begin, y_begin, layer, type_boat, index, orientation)
         if type_boat == 1:
             self.error = self.container.place_boat(x_begin, y_begin, type_boat, index, orientation)
             self.y_finish = self.container.y_finish

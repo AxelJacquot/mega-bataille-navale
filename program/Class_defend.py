@@ -1,9 +1,10 @@
 from program.Class_player import player, map_allied
+from PySide2.QtCore import QObject, Signal, Property
 
-
-class defend:
+class defend(QObject):
 
     def __init__(self):
+        super(defend,self).__init__()
         self.touch = 0
 
     def case_tire_1(self, x, y, layer, tir):
