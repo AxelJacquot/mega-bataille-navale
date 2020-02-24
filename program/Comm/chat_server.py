@@ -47,13 +47,14 @@ list_of_clients: List[socket.socket] = []
 list_of_pseudo = []
 
 
-def clientthread(conn, addr):
+def clientthread(conn, addr):.
     """Control Main of the threads."""
     message = ""
     Pseudo = ""
     while True:
         try:
             data_rcv = conn.recv(2048)
+            conn.clean()
             if data_rcv:
                 ID = int(data_rcv[0])
                 print("ID=", ID)

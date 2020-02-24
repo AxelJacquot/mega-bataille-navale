@@ -9,12 +9,10 @@ from program.LogicGame.Class_attack import Attack
 from program.LogicGame.Class_player import player
 from program.LogicGame.Class_defend import defend
 from program.Comm.client import Client
+from program.Comm.server import server
 from PySide2.QtCore import QObject, Signal, Property
 from PySide2.QtWidgets import QApplication, QLabel
 from PySide2.QtQml import QQmlApplicationEngine
-
-status = Queue(maxsize=0)
-statusclient = Queue(maxsize=0)
 
 if __name__ == "__main__":
     x = 0
@@ -23,12 +21,9 @@ if __name__ == "__main__":
     player1 = player()
     defense = defend()
     attac = Attack()
-
+    client = Client()
+    serv = server()
     # ########### part Comm TCP ###########
-    statusconnect = 0
-    data_q = statusclient
-    thread1 = Client(data_q)
-    thread1.start()
     """
         thread1.signal_pseudo.connect(print_pseudo)
         ip = "10.33.1.246"
@@ -45,11 +40,10 @@ if __name__ == "__main__":
     context.setContextProperty("Attack", attac)
     context.setContextProperty("Defense", defense)
     context.setContextProperty("Player", player1)
+    context.setContextProperty("Client", client)
+    context.setContextProperty("Server", serv)
     engine.load("GUI/main.qml")
     sys.exit(app.exec_())
 
     # exit client
-    Client.exitclient()
-    thread1.join()
-    status.close()
-    statusclient.close()
+

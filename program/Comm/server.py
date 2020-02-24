@@ -9,6 +9,6 @@ class server(QObject):
 
     @Slot(str, str)
     def startServer(self, ip, port):
-        cmd = 'python program/Comm/chat_server.py ' + ip + '' + port
+        cmd = 'python program/Comm/chat_server.py ' + ip + ' ' + port
         os.popen(cmd)
         time.sleep(0.01)
