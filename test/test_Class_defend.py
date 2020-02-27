@@ -5,9 +5,11 @@ from program.LogicGame.Class_player import player, map_allied
 df = defend()
 
 
-def test_case_tire_1():
+def test_case_tire():
 
     map_allied[2, 6, 5]= 5
-    assert df.case_tire_1(5,6,2,1)==1
+    df.case_tire(5,6)
+    assert touche == 1
     map_allied[2, 6, 5]= 0
-    assert df.case_tire_1(5,6,2,1)== 0
+    df.case_tire(5,6,2)
+    assert touche == 0
