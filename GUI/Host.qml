@@ -4,13 +4,6 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 
 ColumnLayout{
-    /*Connections{
-        target: Client
-        onSignalpseudo:{
-            main.connect = true
-        }
-
-    }*/
     GridLayout{
         columns: 2
         //property int goodConnect: 0

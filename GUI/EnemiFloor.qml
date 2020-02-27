@@ -25,10 +25,10 @@ GridLayout{
                 if(x == posX && y == posY && lay == indexFloor){
                     console.log("coule")
                     if(touch == true){
-                        color = 'blue';
+                        color = 'red';
                     }
                     else{
-                        color = 'red';
+                        color = 'blue';
                     }
                     var i = 0;
                     while (i < 100) {

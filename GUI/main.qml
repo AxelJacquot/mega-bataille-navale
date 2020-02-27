@@ -5,21 +5,25 @@ import QtQuick.Layouts 1.3
 ApplicationWindow {
     id: main
     visible: true
-    width: 640
-    height: 480
-    title: qsTr("Tabs")
+    width: 1080
+    height: 570
+    minimumHeight: height
+    minimumWidth: width
+    maximumHeight: height
+    maximumWidth: width
+    title: qsTr("BattleShip")
 
     property bool connect: false
     property bool game: false
     property bool start: false
 
     PageConnexion{
-        visible: !connect
+        visible: connect
 
     }
 
     Game{
-        visible: connect
+        visible: !connect
     }
 
 }
