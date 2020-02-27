@@ -27,7 +27,7 @@ class Attack(QObject):
         x += 1
         y += 1
         self.TargetShoot.emit(2 ,x, y)
-        self.Target.emit()
+        #self.Target.emit()
 
     @Slot(int, int)
     def tire2(self, resultShoot, coule):

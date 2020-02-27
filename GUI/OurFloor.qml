@@ -44,7 +44,11 @@ GridLayout{
                             if(touche == 1){
                                 color = 'black'
                             }
-                            for(int = 0; i < 100; i++);
+                            var i = 0;
+                            while (i < 100) {
+                                i++;
+                                console.log(i)
+                            }
                             main.game = true
                         }
                     }

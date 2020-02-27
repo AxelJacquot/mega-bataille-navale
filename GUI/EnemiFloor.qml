@@ -30,8 +30,10 @@ GridLayout{
                     else{
                         color = 'red';
                     }
-                    for(int = 0; i < 100; i++);
-                    Reseau.receiveData()
+                    var i = 0;
+                    while (i < 100) {
+                        i++;
+                    }
                 }
             }
 
@@ -45,9 +47,7 @@ GridLayout{
                 cursorShape: Qt.OpenHandCursor
                 onClicked: {
                     if(main.game = true && main.start == true){
-                        console.log(posX)
-                        console.log(posY)
-                        console.log(indexFloor)
+                        main.game = false;
                         Attack.tire(posX, posY) 
                     }                           
                 }

@@ -3,7 +3,7 @@ from time import sleep
 
 if __name__ == "__main__":
     host = Reseau()
-    host.host("10.33.1.159", 5454)
+    host.host("192.168.43.236", 54546)
     while True:
-        host.sendPseudo(1,"Bonjour")
+        host.sendData(2, 13, 14)
         sleep(10)

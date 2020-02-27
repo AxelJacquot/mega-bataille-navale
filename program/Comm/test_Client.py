@@ -7,8 +7,7 @@ def test(pseudo):
 
 if __name__ == "__main__":
     client = Reseau()
-    client.client("10.33.1.159", 5454)
-    client.playerConnected.connect(test)
+    client.client("192.168.43.236", 54546)
     while True:
         client.receiveData()
         
