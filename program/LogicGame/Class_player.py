@@ -6,6 +6,9 @@ from PySide2.QtCore import QObject, Slot
 map_allied = np.zeros(225 * 3)
 map_allied.resize((3, 15, 15))
 
+boat = np.zeros(200)
+boat.resize(8, 5, 5)
+
 
 class player(QObject):
     def __init__(self, size_x=15, size_y=15, layer=2):
@@ -26,7 +29,7 @@ class player(QObject):
         self.MSM_1 = MSM()
         self.SMNuclear_1 = SMNuclear()
 
-    @Slot(int,int,int,int,int,bool)
+    @Slot(int,int,int,int,int,bool, result=bool)
     def PSM(self, x_begin, y_begin, layer, type_boat, index, orientation):
         print(x_begin, y_begin, layer, type_boat, index, orientation)
         if type_boat == 1:
@@ -78,7 +81,10 @@ class player(QObject):
                             else:
                                 self.map_allied[layer, y, x] = type_boat
         if self.error == 1:
-            return 1
+            return False
+        else:
+            boat[type_boat][index] = [x_begin, self.x_finish, y_begin, self.y_finish, layer]
+            return True
 # num_sm
 # 1 => porte-container
 # 2 => porte-avion

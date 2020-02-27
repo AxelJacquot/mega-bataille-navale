@@ -10,6 +10,8 @@ ApplicationWindow {
     title: qsTr("Tabs")
 
     property bool connect: false
+    property bool game: false
+    property bool start: false
 
     PageConnexion{
         visible: !connect

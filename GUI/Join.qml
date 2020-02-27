@@ -4,16 +4,17 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 
 ColumnLayout{
-    Connections{
+    /*Connections{
         target: Client
         onSignalpseudo:{
             console.log("ixi");
             
             main.connect = true
         }
-    }
+    }*/
     GridLayout{
         columns: 2
+        //property int goodConnect: 0
         Text {
             id: textpseudo
             text: qsTr("Pseudo")
@@ -21,6 +22,9 @@ ColumnLayout{
         TextField{
             id: pseudo
             placeholderText: "D4RKSaSuKe"
+            validator: RegExpValidator{
+                regExp: /[0-9A-Za-z]{1,10}/
+            }
         }
         Text {
             id: textip
@@ -43,7 +47,6 @@ ColumnLayout{
             validator: RegExpValidator{
                 regExp: /[0-9]{1,5}/
             }
-
         }
     }
     RowLayout{
@@ -52,9 +55,12 @@ ColumnLayout{
             Layout.alignment: Qt.AlignVCenter
             text: qsTr("Connect")
             onClicked: {
-                Client.connect(ip.text, port.text, pseudo.text)
+                var goodConnect = Reseau.client(ip.text, port.text)
+                if(goodConnect == 1){
+                    main.connect = true
+                    main.game = false     
+                }
             }
-
         }
     }
 }

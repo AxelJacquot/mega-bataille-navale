@@ -11,32 +11,45 @@ GridLayout{
     columnSpacing: 0
     rowSpacing: 0
     property int indexFloor: viewEnnemi.currentIndex
-    property int i: 0
-    property int posX: 0
-    property int posY: 0
     Repeater {
         model: 225
         Rectangle {
             id : rectEn
+            property int posX: index / 15
+            property int posY: index % 15
             width: 25; height: 25
             color: "grey"
             border.color: Qt.lighter(color)
+            
+            function reponse(x,y,lay, touch){
+                if(x == posX && y == posY && lay == indexFloor){
+                    console.log("coule")
+                    console.log(touch)
+                    if(touch == true){
+                        color = 'blue';
+                    }
+                    else{
+                        color = 'red';
+                    }
+                    Reseau.receiveData()
+                }
+            }
+
+            Component.onCompleted :{
+                Attack.TargetQMl.connect(reponse)
+            }
+            
             MouseArea{
                 anchors.fill: parent
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
                 cursorShape: Qt.OpenHandCursor
                 onClicked: {
-                    i = index
-                    posX = i /15
-                    posY = i % 15
-                    console.log(posX)
-                    console.log(posY)
-                    console.log(indexFloor)
-                    Attack.tire(posX, posY, indexFloor)
-                    if (mouse.button === Qt.RightButton)
-                        rectEn.color = 'blue';
-                    else
-                        rectEn.color = 'red';
+                    if(main.game = true && main.start == true){
+                        console.log(posX)
+                        console.log(posY)
+                        console.log(indexFloor)
+                        Attack.tire(posX, posY) 
+                    }                           
                 }
             }
         }

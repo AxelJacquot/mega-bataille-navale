@@ -16,9 +16,8 @@ GridLayout{
         ColumnLayout{
             id: cl
             property bool boat: false
-            property int posX
-            property int posY
-            property int i
+            property int posX : index / 15
+            property int posY : index % 15
             DropArea{
                 id : dragTarget
                 width: 25
@@ -26,9 +25,6 @@ GridLayout{
                 keys: placekey
                 onDropped: {
                     //drag.accepted = false
-                    i = index
-                    posX = i /15
-                    posY = i % 15
                     console.log(posX)
                     console.log(posY)
                     console.log(indexLayer)
@@ -44,6 +40,20 @@ GridLayout{
                     color: colorkey
                     border.color: Qt.lighter(color)
                     opacity: 0.5
+                    Component.onCompleted : {
+                        Defense.ShootQML.connect(reponse)
+                    }
+
+                    function reponse(x, y, lay, touche) {
+                        if(x == posX && y == posY && lay == indexLayer){
+                            console.log("touche")
+                            if(touche == 1){
+                                color = 'black'
+                            }
+                            main.game = true
+                        }
+                    }
+                    
                     //visible: parent.containsDrag
 
                     states: [
