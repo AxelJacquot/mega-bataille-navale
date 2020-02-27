@@ -30,6 +30,7 @@ GridLayout{
                     else{
                         color = 'red';
                     }
+                    for(int = 0; i < 100; i++);
                     Reseau.receiveData()
                 }
             }

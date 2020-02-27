@@ -44,6 +44,7 @@ GridLayout{
                             if(touche == 1){
                                 color = 'black'
                             }
+                            for(int = 0; i < 100; i++);
                             main.game = true
                         }
                     }
