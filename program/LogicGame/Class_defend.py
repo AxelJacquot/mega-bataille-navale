@@ -20,7 +20,7 @@ class defend(QObject):
         data2 = 0
         xSize = 0
         ySize = 0
-        touche = 0
+        self.touch = 0
         layer = 0
         errorCoule = 0
         for lay in range(3):
@@ -37,7 +37,7 @@ class defend(QObject):
 
                 for i in range(5):
                     test = boat[typeBoat][i]
-                    if test[0] >= x <= test[1] and test[2] >= y <= test[3] and lay == test[4]:
+                    if test[0] >= x <= test[1] -1  and test[2] >= y <= test[3] - 1 and lay == test[4]:
                         xSize = int(test[0] - test[1] + 1)
                         ySize = int(test[2] - test[2] + 1)
                         for xCoule in range(int(test[0]), int(test[1])):
@@ -48,15 +48,15 @@ class defend(QObject):
                             data2 = 1
                         break
                 layer = lay
-                touche = 1
+                self.touch = 1
                 map_allied[lay, y, x] = 9
                 break
             elif map_allied[lay, y, x] == 0:
                 layer = lay
-                touche = 0
+                self.touch = 0
                 map_allied[lay, y, x] = 8
                 break
-        self.ShootQML.emit(x, y, layer, touche)
+        self.ShootQML.emit(x, y, layer, self.touch)
         self.Shoot.emit(3, data1, data2)
         
 

@@ -12,6 +12,7 @@ GridLayout{
     property int typeBoat: 0
     property int indexBoat: 0
     property bool orientation: false
+    property bool dropAccept : true
 
     MenuBoat{}
 

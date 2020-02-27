@@ -46,7 +46,7 @@ GridLayout{
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
                 cursorShape: Qt.OpenHandCursor
                 onClicked: {
-                    if(main.game = true && main.start == true){
+                    if(main.game == true && main.start == true){
                         main.game = false;
                         Attack.tire(posX, posY) 
                     }                           

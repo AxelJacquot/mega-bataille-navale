@@ -39,7 +39,6 @@ class Reseau(QThread):
 
     @Slot(str, str, result=int)
     def host(self, ip, port):
-        self.isclient = False
         port = int(port)
         error = False
         host = (ip, port)
@@ -51,6 +50,7 @@ class Reseau(QThread):
             #self.ConnectHost.emit(False)
             return 0
         if error == False:
+            self.isclient = False
             self.socket.listen(2)
             self.socketclient, self.infos_connexion = self.socket.accept()
             print(self.infos_connexion)

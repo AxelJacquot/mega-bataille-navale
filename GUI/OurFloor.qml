@@ -23,9 +23,28 @@ GridLayout{
                 width: 25
                 height: 25
                 keys: placekey
+                onEntered: {
+                    console.log("Test")
+                    var error = Player.TestPlaceBoat(posX, posY, root.typeBoat, root.indexBoat, root.orientation)
+                    if(error == false){
+                        console.log(error)
+                        root.dropAccept = false
+                    }
+                    else{
+                        root.dropAccept = true
+                    }
+                }
+
                 onDropped: {
                     //drag.accepted = false
-                    Player.PSM(posX, posY, indexLayer, root.typeBoat, root.indexBoat, root.orientation)
+                    var error = Player.PlaceBoat(posX, posY, indexLayer, root.typeBoat, root.indexBoat, root.orientation)
+                    console.log(error)
+                    if(error == false){
+                        drop.accept(Qt.IgnoreAction)
+                    }
+                    else{
+                        drop.accept()
+                    }
                 }
                 Rectangle {
                     id: dropRectangle
@@ -43,11 +62,6 @@ GridLayout{
                             console.log("touche")
                             if(touche == 1){
                                 color = 'black'
-                            }
-                            var i = 0;
-                            while (i < 100) {
-                                i++;
-                                console.log(i)
                             }
                             main.game = true
                         }

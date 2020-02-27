@@ -13,15 +13,20 @@ class Container:
                     if x + self.size_y <= 15 and (y >= 0) and (x >= 0) and y + self.size_x <= 15:
                         self.x_finish = x + self.size_y
                         self.y_finish = y + self.size_x
-
+                        return True
+                    else:
+                        return False
                 elif orientation == 0:
                     if x + self.size_x <= 15 and (y >= 0) and (x >= 0) and y + self.size_y <= 15:
                         self.x_finish = x + self.size_x
                         self.y_finish = y + self.size_y
+                        return True
+                    else:
+                        return False
                 else:
-                    return 1
+                    return False
             else:
-                return 1
+                return False
 
 
 class Destroyer:
@@ -39,15 +44,20 @@ class Destroyer:
                     if x + self.size_y <= 15 and (y >= 0) and (x >= 0) and y + self.size_x <= 15:
                         self.x_finish = x + self.size_y
                         self.y_finish = y + self.size_x
-
+                        return True
+                    else:
+                        return False
                 elif orientation == 0:
                     if x + self.size_x <= 15 and (y >= 0) and (x >= 0) and y + self.size_y <= 15:
                         self.x_finish = x + self.size_x
                         self.y_finish = y + self.size_y
+                        return True
+                    else:
+                        return False
                 else:
-                    return 1
+                    return False
             else:
-                return 1
+                return False
 
 
 class PA:
@@ -65,15 +75,20 @@ class PA:
                     if x + self.size_y <= 15 and (y >= 0) and (x >= 0) and y + self.size_x <= 15:
                         self.x_finish = x + self.size_y
                         self.y_finish = y + self.size_x
-
+                        return True
+                    else:
+                        return False
                 elif orientation == 0:
                     if x + self.size_x <= 15 and (y >= 0) and (x >= 0) and y + self.size_y <= 15:
                         self.x_finish = x + self.size_x
                         self.y_finish = y + self.size_y
+                        return True
+                    else:
+                        return False
                 else:
-                    return 1
+                    return False
             else:
-                return 1
+                return False
 
 
 class Tor:
@@ -92,15 +107,20 @@ class Tor:
                     if x + self.size_y <= 15 and (y >= 0) and (x >= 0) and y + self.size_x <= 15:
                         self.x_finish = x + self.size_y
                         self.y_finish = y + self.size_x
-
+                        return True
+                    else:
+                        return False
                 elif orientation == 0:
                     if x + self.size_x <= 15 and (y >= 0) and (x >= 0) and y + self.size_y <= 15:
                         self.x_finish = x + self.size_x
                         self.y_finish = y + self.size_y
+                        return True
+                    else:
+                        return False
                 else:
-                    return 1
+                    return False
             else:
-                return 1
+                return False
 
 # num_sm
 # 1 => porte-container

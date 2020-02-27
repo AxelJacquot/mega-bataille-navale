@@ -28,7 +28,7 @@ ColumnLayout {
         Item {
             id: boot
             property bool sens: false
-            property bool drop: false
+            property bool drop: true
             property bool test: true
             property int mul: caseX * caseY
 
@@ -49,23 +49,27 @@ ColumnLayout {
                 onClicked: {
                     if(mouse.button === Qt.LeftButton){
                         drop = false
-                        console.log("nni")
+                        root.typeBoat = typeBoat
+                        root.indexBoat = index
+                        root.orientation = sens
                     }
                 }
 
                 onReleased: {
-                    console.log(tile.Drag.active)
                     if(mouse.button === Qt.RightButton & drop == false){
                         sens = !sens
                     }
                     if(mouse.button === Qt.LeftButton & drop == false){
                         drop = true
-                        parent = tile.Drag.target !== null ? tile.Drag.target : boot
+                        
                         //parent = tile.Drag.target
                         root.typeBoat = typeBoat
                         root.indexBoat = index
                         root.orientation = sens
-                        tile.Drag.drop()
+                        if(root.dropAccept == true){
+                            parent = tile.Drag.target !== null ? tile.Drag.target : boot
+                            tile.Drag.drop()
+                        }
                     }
                 }
 
