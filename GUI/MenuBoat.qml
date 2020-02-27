@@ -35,10 +35,6 @@ ColumnLayout {
             text: qsTr("Launch Game")
             onClicked: {
                 main.start = true
-                if(main.game == false){
-                    console.log("false")
-                    Reseau.receiveData()
-                }
             }
 
         }

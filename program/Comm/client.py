@@ -15,7 +15,7 @@ import mock
 import socket
 import threading
 import simplelogging
-from PySide2.QtCore import Signal, Slot, QObject
+from PySide2.QtCore import Signal, Slot, QObject, QThread
 from PySide2 import *
 
 log = simplelogging.get_logger()
@@ -60,7 +60,7 @@ class Client(QObject, threading.Thread):
             log.error("Connect fail")
             return False
 
-    def runClient(self):
+    def run(self):
         """Life of all the client."""
         # process connection done, life of communication
         while self.status_client:
@@ -136,7 +136,7 @@ class Client(QObject, threading.Thread):
             print("error has catch")
             return False
 
-    def clientsend(self, code: int, data: str):
+    def sendPseudo(self, code: int, data: str):
         """Send data to server."""
         bytesmsg = bytearray(3)
         bytesmsg[0] = code
@@ -144,6 +144,8 @@ class Client(QObject, threading.Thread):
         bytesmsg.extend(data.encode())
         print("data:", data, " bytesmsg:", bytesmsg)
         self.client_socket.send(bytesmsg)
+    
+    def sendPseudo()
 
     @Slot()
     def exitclient(self):

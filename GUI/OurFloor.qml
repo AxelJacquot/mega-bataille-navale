@@ -25,12 +25,6 @@ GridLayout{
                 keys: placekey
                 onDropped: {
                     //drag.accepted = false
-                    console.log(posX)
-                    console.log(posY)
-                    console.log(indexLayer)
-                    console.log(root.typeBoat)
-                    console.log(root.indexBoat)
-                    console.log(root.orientation)
                     Player.PSM(posX, posY, indexLayer, root.typeBoat, root.indexBoat, root.orientation)
                 }
                 Rectangle {
@@ -49,6 +43,11 @@ GridLayout{
                             console.log("touche")
                             if(touche == 1){
                                 color = 'black'
+                            }
+                            var i = 0;
+                            while (i < 100) {
+                                i++;
+                                console.log(i)
                             }
                             main.game = true
                         }

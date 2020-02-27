@@ -24,14 +24,16 @@ GridLayout{
             function reponse(x,y,lay, touch){
                 if(x == posX && y == posY && lay == indexFloor){
                     console.log("coule")
-                    console.log(touch)
                     if(touch == true){
                         color = 'blue';
                     }
                     else{
                         color = 'red';
                     }
-                    Reseau.receiveData()
+                    var i = 0;
+                    while (i < 100) {
+                        i++;
+                    }
                 }
             }
 
@@ -45,9 +47,7 @@ GridLayout{
                 cursorShape: Qt.OpenHandCursor
                 onClicked: {
                     if(main.game = true && main.start == true){
-                        console.log(posX)
-                        console.log(posY)
-                        console.log(indexFloor)
+                        main.game = false;
                         Attack.tire(posX, posY) 
                     }                           
                 }

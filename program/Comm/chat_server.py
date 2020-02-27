@@ -70,8 +70,8 @@ def clientthread(conn, addr):.
                     treatmentreponcefire(conn, addr, 3, message)
                 elif ID == 7:
                     treatmessage(conn, addr, Pseudo, message)
-            """else:
-                remove(conn)"""
+               """ else:
+                    remove(conn) """
         except:
             continue
 

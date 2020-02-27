@@ -31,7 +31,6 @@ class player(QObject):
 
     @Slot(int,int,int,int,int,bool, result=bool)
     def PSM(self, x_begin, y_begin, layer, type_boat, index, orientation):
-        print(x_begin, y_begin, layer, type_boat, index, orientation)
         if type_boat == 1:
             self.error = self.container.place_boat(x_begin, y_begin, type_boat, index, orientation)
             self.y_finish = self.container.y_finish
@@ -85,6 +84,7 @@ class player(QObject):
         else:
             boat[type_boat][index] = [x_begin, self.x_finish, y_begin, self.y_finish, layer]
             return True
+            
 # num_sm
 # 1 => porte-container
 # 2 => porte-avion
