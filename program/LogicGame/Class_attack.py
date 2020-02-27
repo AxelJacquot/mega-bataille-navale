@@ -23,7 +23,8 @@ class Attack(QObject):
         # fonction envoie et attente de reponse
         self.x = x
         self.y = y
-        #self.tire2(0, 0)
+        x += 1
+        y += 1
         self.TargetShoot.emit(2 ,x, y)
         self.Target.emit()
 

@@ -64,20 +64,20 @@ class player(QObject):
         if self.error is None:
             if 0 > layer > 3:
                 self.error = 1
-                return self.error
+                return False
             elif y_begin > self.y_finish:
                 self.error = 1
-                return self.error
+                return False
             elif x_begin > self.x_finish:
                 self.error = 1
-                return self.error
+                return False
             else:
                 for y in range(15):
                     for x in range(15):
                         if y_begin <= y <= self.y_finish and x_begin <= x <= self.x_finish:
                             if self.map_allied[layer, y, x] != 0:
                                 self.error = 1
-                                return self.error
+                                return False
                             else:
                                 self.map_allied[layer, y, x] = type_boat
         if self.error == 1:

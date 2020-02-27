@@ -98,8 +98,8 @@ class Reseau(QObject):
             print(iD , lenght, self.message)
             self.playerConnected.emit(self.message)
         elif iD == 2:
-            x = int(self.messageReceive[1])
-            y = int(self.messageReceive[2])
+            x = int(self.messageReceive[1]) - 1
+            y = int(self.messageReceive[2]) - 1
             print(type(x))
             self.ReceiveShoot.emit(x, y)
         elif iD == 3:
