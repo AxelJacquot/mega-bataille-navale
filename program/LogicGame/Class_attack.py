@@ -2,17 +2,19 @@ import numpy as np
 
 from PySide2.QtCore import QObject, Slot, Signal
 
+
 class Attack(QObject):
-    touch = 0
+    
 
     TargetShoot = Signal(int, int, int)
     Target = Signal()
     TargetQMl = Signal(int, int, int, bool)
 
     def __init__(self):
-        super(Attack,self).__init__()
+        super(Attack, self).__init__()
         self.map_enemy = np.zeros(225 * 3)
         self.map_enemy.resize((3, 15, 15))
+        self.touch = False
         self.x = 0
         self.y = 0
         self.tir = 0
@@ -31,14 +33,18 @@ class Attack(QObject):
 
     @Slot(int, int)
     def tire2(self, resultShoot, coule):
+<<<<<<< HEAD
+        self.touch = False
+=======
         print("Result Shoot: " , resultShoot, " Coule :", coule)
         touch = False
+>>>>>>> a256c2acd1269b7730e741d0989f8e3e06e11935
         for lay in range(3):
             if self.map_enemy[lay, self.y, self.x] != 9 and self.map_enemy[lay, self.y, self.x] != 8:
                 if resultShoot != 0:
                     self.map_enemy[lay, self.y, self.x] = 9
-                    touch = True
+                    self.touch = True
                 else:
                     self.map_enemy[lay, self.y, self.x] = 8
-                self.TargetQMl.emit(self.x, self.y, lay, touch)
+                self.TargetQMl.emit(self.x, self.y, lay, self.touch)
                 break
