@@ -13,3 +13,4 @@ def test_case_tire():
     map_allied[2, 6, 5]= 0
     df.case_tire(5,6,2)
     assert touche == 0
+    
