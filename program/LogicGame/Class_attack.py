@@ -2,6 +2,7 @@ import numpy as np
 
 from PySide2.QtCore import QObject, Slot, Signal
 
+
 class Attack(QObject):
     touch = 0
 
@@ -10,7 +11,7 @@ class Attack(QObject):
     TargetQMl = Signal(int, int, int, bool)
 
     def __init__(self):
-        super(Attack,self).__init__()
+        super(Attack, self).__init__()
         self.map_enemy = np.zeros(225 * 3)
         self.map_enemy.resize((3, 15, 15))
         self.x = 0
@@ -23,9 +24,14 @@ class Attack(QObject):
         # fonction envoie et attente de reponse
         self.x = x
         self.y = y
+<<<<<<< Updated upstream
         x += 1
         y += 1
         self.TargetShoot.emit(2 ,x, y)
+=======
+        # self.tire2(0, 0)
+        self.TargetShoot.emit(2, x, y)
+>>>>>>> Stashed changes
         self.Target.emit()
 
     @Slot(int, int)
