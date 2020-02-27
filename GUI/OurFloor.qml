@@ -25,12 +25,6 @@ GridLayout{
                 keys: placekey
                 onDropped: {
                     //drag.accepted = false
-                    console.log(posX)
-                    console.log(posY)
-                    console.log(indexLayer)
-                    console.log(root.typeBoat)
-                    console.log(root.indexBoat)
-                    console.log(root.orientation)
                     Player.PSM(posX, posY, indexLayer, root.typeBoat, root.indexBoat, root.orientation)
                 }
                 Rectangle {

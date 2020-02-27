@@ -36,7 +36,6 @@ ColumnLayout {
             onClicked: {
                 main.start = true
                 if(main.game == false){
-                    console.log("false")
                     Reseau.receiveData()
                 }
             }

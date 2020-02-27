@@ -24,7 +24,6 @@ GridLayout{
             function reponse(x,y,lay, touch){
                 if(x == posX && y == posY && lay == indexFloor){
                     console.log("coule")
-                    console.log(touch)
                     if(touch == true){
                         color = 'blue';
                     }

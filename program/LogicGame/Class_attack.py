@@ -19,6 +19,7 @@ class Attack(QObject):
 
     @Slot(int, int)
     def tire(self, x, y):
+        print("Tire")
         print(x, y)
         # fonction envoie et attente de reponse
         self.x = x
@@ -30,6 +31,7 @@ class Attack(QObject):
 
     @Slot(int, int)
     def tire2(self, resultShoot, coule):
+        print("Result Shoot: " , resultShoot, " Coule :", coule)
         touch = False
         for lay in range(3):
             if self.map_enemy[lay, self.y, self.x] != 9 and self.map_enemy[lay, self.y, self.x] != 8:

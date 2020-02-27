@@ -14,6 +14,8 @@ class defend(QObject):
 
     @Slot(int, int)
     def case_tire(self, x, y):
+        print("Defense Case")
+        print(x ,y)
         data1 = 0
         data2 = 0
         xSize = 0
@@ -34,7 +36,6 @@ class defend(QObject):
                     data1 = 3
 
                 for i in range(5):
-                    print(type(typeBoat))
                     test = boat[typeBoat][i]
                     if test[0] >= x <= test[1] and test[2] >= y <= test[3] and lay == test[4]:
                         xSize = int(test[0] - test[1] + 1)

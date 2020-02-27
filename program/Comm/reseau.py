@@ -85,9 +85,8 @@ class Reseau(QObject):
             self.messageReceive = self.socket.recv(1024).decode()
         else:
             self.messageReceive = self.socketclient.recv(1024).decode()
-        print("ici")
+        print(self.messageReceive)
         iD = int(self.messageReceive[0])
-        print(iD)
         if iD == 1:
             lenght = int(self.messageReceive[1])
             print(lenght)
@@ -100,7 +99,6 @@ class Reseau(QObject):
         elif iD == 2:
             x = int(self.messageReceive[1]) - 1
             y = int(self.messageReceive[2]) - 1
-            print(type(x))
             self.ReceiveShoot.emit(x, y)
         elif iD == 3:
             resultShoot = int(self.messageReceive[1])
