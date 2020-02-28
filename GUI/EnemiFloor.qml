@@ -9,7 +9,7 @@ GridLayout{
     columns: 15
     columnSpacing: 0
     rowSpacing: 0
-    property int indexFloor: viewEnnemi.currentIndex
+    property int indexFloor: index
     MaPopUp{
         id: popVictory
         message: "Vous avez gagné"
@@ -30,6 +30,8 @@ GridLayout{
             
             function reponse(x,y,lay, touch, coule){
                 if(x == posX && y == posY && lay == indexFloor){
+                    console.log("layer reponse: " + lay)
+                    console.log("layer index: " + indexFloor)
                     if(touch == true){
                         color = 'red';
                     }
