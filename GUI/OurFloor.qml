@@ -12,6 +12,12 @@ GridLayout{
     property string colorkey
     property int indexFloor
     property var key : [placekey, "Submarine"]
+
+    MaPopUp{
+        id: popDefeat
+        message: "Vous avez perdu"
+    }
+
     Repeater {
         model: 225
         ColumnLayout{
@@ -52,13 +58,19 @@ GridLayout{
                         Defense.ShootQML.connect(reponse)
                     }
 
-                    function reponse(x, y, lay, touche){
+                    function reponse(x, y, lay, touche, coule){
                         if(x == posX && y == posY && lay == indexFloor){
                             console.log(lay)
                             console.log(indexFloor)
                             if(touche == 1){
                                 color = 'black'
-                            }  
+                            }
+                            if(coule == 1){
+                                main.ourBoatDefeat = main.ourBoatDefeat + 1
+                                if(main.ourBoatDefeat == 18){
+                                    popDefeat.open()
+                                } 
+                            }
                         }
                         main.game = true
                     }

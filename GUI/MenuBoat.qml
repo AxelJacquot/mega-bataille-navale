@@ -11,10 +11,7 @@ ColumnLayout {
     spacing : 125
     property int boatPlace: 18
 
-    MaPopUp{
-        id: popBoat
-        message: "La partie peut commencer"
-    }
+    
     
     ColumnLayout{
         width : 250
@@ -59,7 +56,6 @@ ColumnLayout {
             text: qsTr("Launch Game")
             onClicked: {
                 if (boatPlace == 0) {
-                    popBoat.open()
                     console.log("Lauch")
                     Reseau.sendPseudo(1, main.ourPseudo)
                     main.start = true

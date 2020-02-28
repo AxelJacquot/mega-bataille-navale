@@ -10,6 +10,10 @@ GridLayout{
     columnSpacing: 0
     rowSpacing: 0
     property int indexFloor: viewEnnemi.currentIndex
+    MaPopUp{
+        id: popVictory
+        message: "Vous avez gagné"
+    }
     Repeater {
         model: 225
         Rectangle {
@@ -20,7 +24,7 @@ GridLayout{
             color: "grey"
             border.color: Qt.lighter(color)
             
-            function reponse(x,y,lay, touch){
+            function reponse(x,y,lay, touch, coule){
                 if(x == posX && y == posY && lay == indexFloor){
                     console.log("coule")
                     if(touch == true){
@@ -29,9 +33,11 @@ GridLayout{
                     else{
                         color = 'blue';
                     }
-                    var i = 0;
-                    while (i < 100) {
-                        i++;
+                    if(coule == true){
+                        main.ennemyBoatDefeat = main.ennemyBoatDefeat + 1
+                        if(main.ennemyBoatDefeat == 18){
+                            popVictory.open()
+                        }
                     }
                 }
             }

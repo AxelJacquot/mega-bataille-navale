@@ -8,7 +8,7 @@ class Attack(QObject):
 
     TargetShoot = Signal(int, int, int)
     Target = Signal()
-    TargetQMl = Signal(int, int, int, bool)
+    TargetQMl = Signal(int, int, int, bool, bool)
 
     def __init__(self):
         super(Attack, self).__init__()
@@ -39,9 +39,14 @@ class Attack(QObject):
                 if resultShoot != 0:
                     self.map_enemy[lay, self.y, self.x] = 9
                     self.touch = True
+                    if coule != 0:
+                        self.TargetQMl.emit(self.x, self.y, lay, self.touch, True)
+                    else:
+                        self.TargetQMl.emit(self.x, self.y, lay, self.touch, False)
                 else:
                     self.map_enemy[lay, self.y, self.x] = 8
                     self.touch = False
-                self.TargetQMl.emit(self.x, self.y, lay, self.touch)
+                    self.TargetQMl.emit(self.x, self.y, lay, self.touch, False)
             if(self.touch == True):
                 break
+        

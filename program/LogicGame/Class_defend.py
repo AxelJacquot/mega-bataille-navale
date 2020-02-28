@@ -3,7 +3,7 @@ from PySide2.QtCore import QObject, Signal, Property, Slot
 
 class defend(QObject):
 
-    ShootQML = Signal(int, int, int, bool)
+    ShootQML = Signal(int, int, int, bool, bool)
     Shoot = Signal(int, int, int)
 
     def __init__(self):
@@ -24,6 +24,7 @@ class defend(QObject):
         self.touch = 0
         self.layer = 0
         errorCoule = 0
+        coule = False
         for lay in range(3):
             if map_allied[lay, y, x] != 0 and map_allied[lay, y, x] != 9 and map_allied[lay, y, x] != 8:
                 test = 1
@@ -47,6 +48,7 @@ class defend(QObject):
                                     errorCoule += 1
                         if (xSize * ySize) == errorCoule  and errorCoule != 0:
                             data2 = 1
+                            coule = True
                         break
                 self.layer = lay
                 print("test: ", self.layer)
@@ -58,7 +60,7 @@ class defend(QObject):
                 self.touch = 0
                 map_allied[lay, y, x] = 8
         print("test: ", self.layer)
-        self.ShootQML.emit(x, y, self.layer, self.touch)
+        self.ShootQML.emit(x, y, self.layer, self.touch, coule)
         self.Shoot.emit(3, data1, data2)
         
 

@@ -4,7 +4,6 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.0
 
 Popup {
-    id : pop
     x: main.width / 2 + 200
     y: main.height / 2 + 200
     width: 400
