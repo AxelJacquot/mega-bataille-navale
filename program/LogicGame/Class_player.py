@@ -29,51 +29,50 @@ class player(QObject):
         self.MSM_1 = MSM()
         self.SMNuclear_1 = SMNuclear()
 
-    @Slot(int, int, int, int , bool, result=bool)
-    def TestPlaceBoat(self, x_begin, y_begin, type_boat, index, orientation):
+    @Slot(int, int, int, int , int, bool, result=bool)
+    def TestPlaceBoat(self, x_begin, y_begin, layer, type_boat, index, orientation):
         if type_boat == 1:
             self.error = self.container.place_boat(x_begin, y_begin, type_boat, index, orientation)
             if(self.error == True):
                 self.y_finish = self.container.y_finish
                 self.x_finish = self.container.x_finish
-            print(self.error)
-            return self.error
         elif type_boat == 2:
             self.error = self.destroyer.place_boat(x_begin, y_begin, type_boat, index, orientation)
             if(self.error == True):
                 self.y_finish = self.destroyer.y_finish
                 self.x_finish = self.destroyer.x_finish
-            return self.error
         elif type_boat == 3:
             self.error = self.pa.place_boat(x_begin, y_begin, type_boat, index, orientation)
             if(self.error == True):
                 self.y_finish = self.pa.y_finish
                 self.x_finish = self.pa.x_finish
-            return self.error
         elif type_boat == 4:
             self.error = self.tor.place_boat(x_begin, y_begin, type_boat, index, orientation)
             if(self.error == True):
                 self.y_finish = self.tor.y_finish
                 self.x_finish = self.tor.x_finish
-            return self.error
         elif type_boat == 5:
             self.error = self.SMNuclear_1.place_boat(x_begin, y_begin, type_boat, index, orientation)
             if(self.error == True):
                 self.y_finish = self.SMNuclear_1.y_finish
                 self.x_finish = self.SMNuclear_1.x_finish
-            return self.error
         elif type_boat == 6:
             self.error = self.PSM_1.place_boat(x_begin, y_begin, type_boat, index, orientation)
             if(self.error == True):
                 self.y_finish = self.PSM_1.y_finish
                 self.x_finish = self.PSM_1.x_finish
-            return self.error
         elif type_boat == 7:
             self.error = self.MSM_1.place_boat(x_begin, y_begin, type_boat, index, orientation)
             if(self.error == True):
                 self.y_finish = self.MSM_1.y_finish
                 self.x_finish = self.MSM_1.x_finish
-            return self.error
+        if self.error == True:
+            for y in range(15):
+                for x in range(15):
+                    if y_begin <= y <= self.y_finish - 1 and x_begin <= x <= self.x_finish - 1:
+                        if map_allied[layer, y, x] != 0:
+                            self.error = False
+        return self.error
 
 
     @Slot(int,int,int,int,int,bool, result=bool)
@@ -84,13 +83,7 @@ class player(QObject):
             for y in range(15):
                 for x in range(15):
                     if y_begin <= y <= self.y_finish - 1 and x_begin <= x <= self.x_finish - 1:
-                        if self.map_allied[layer, y, x] != 0:
-                            self.error = 1
-                            return False
-                        else:
-                            self.map_allied[layer, y, x] = type_boat
-        if self.error == 1:
-            return False
+                        map_allied[layer, y, x] = type_boat
         else:
             boat[type_boat][index] = [x_begin, self.x_finish, y_begin, self.y_finish, layer]
             return True

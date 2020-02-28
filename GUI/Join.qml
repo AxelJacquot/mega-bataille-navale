@@ -4,14 +4,6 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 
 ColumnLayout{
-    /*Connections{
-        target: Client
-        onSignalpseudo:{
-            console.log("ixi");
-            
-            main.connect = true
-        }
-    }*/
     GridLayout{
         columns: 2
         //property int goodConnect: 0
@@ -57,6 +49,7 @@ ColumnLayout{
             onClicked: {
                 var goodConnect = Reseau.client(ip.text, port.text)
                 if(goodConnect == 1){
+                    main.ourPseudo = pseudo.text
                     main.connect = true
                     main.game = false     
                 }

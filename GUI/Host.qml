@@ -50,6 +50,7 @@ ColumnLayout{
             onClicked:{
                 var goodConnect = Reseau.host(ip.text, port.text)
                 if(goodConnect == 1){
+                    main.ourPseudo = pseudo.text
                     main.connect = true
                     main.game = true
                 }

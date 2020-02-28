@@ -3,7 +3,6 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
 
-
 GridLayout{
     id:root
     rows: 15
@@ -46,7 +45,7 @@ GridLayout{
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
                 cursorShape: Qt.OpenHandCursor
                 onClicked: {
-                    if(main.game == true && main.start == true){
+                    if(main.game == true && main.start == true && main.havePseudo == true){
                         main.game = false;
                         Attack.tire(posX, posY) 
                     }                           

@@ -25,10 +25,9 @@ GridLayout{
                 height: 25
                 keys: key
                 onEntered: {
-                    console.log("Test")
-                    var error = Player.TestPlaceBoat(posX, posY, root.typeBoat, root.indexBoat, root.orientation)
+                    var error = Player.TestPlaceBoat(posX, posY, indexFloor, root.typeBoat, root.indexBoat, root.orientation)
+                    console.log(error)
                     if(error == false){
-                        console.log(error)
                         root.dropAccept = false
                     }
                     else{
@@ -40,12 +39,7 @@ GridLayout{
                     //drag.accepted = false
                     var error = Player.PlaceBoat(posX, posY, indexFloor, root.typeBoat, root.indexBoat, root.orientation)
                     console.log(error)
-                    if(error == false){
-                        drop.accept(Qt.IgnoreAction)
-                    }
-                    else{
-                        drop.accept()
-                    }
+                    root.dropEffect = true
                 }
                 Rectangle {
                     id: dropRectangle

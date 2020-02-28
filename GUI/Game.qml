@@ -12,7 +12,8 @@ GridLayout{
     property int typeBoat: 0
     property int indexBoat: 0
     property bool orientation: false
-    property bool dropAccept : true
+    property bool dropAccept : false
+    property bool dropEffect: false
 
     property int ourBoatSunk: 0             //count boat to victory or defeat
     property int ennemiBoatSunk: 0          //count boat to victory or defeat

@@ -93,7 +93,7 @@ class PA:
 
 class Tor:
 
-    def __init__(self, size_x=4, size_y=1, layer=1):
+    def __init__(self, size_x=3, size_y=2, layer=1):
         self.size_x = size_x
         self.size_y = size_y
         self.layer = layer

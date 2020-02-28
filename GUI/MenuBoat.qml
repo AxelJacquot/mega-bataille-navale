@@ -5,14 +5,24 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.5
 
 ColumnLayout {
+    id: mBoat
+    property bool rec : false
     width : 250
-    spacing : 100
+    spacing : 125
+    property int boatPlace: 18
+
+    MaPopUp{
+        id: popBoat
+        message: "La partie peut commencer"
+    }
+    
     ColumnLayout{
         width : 250
         height : 400
         ListView{
+            Layout.alignment: Qt.AlignTop
             width : 250
-            height : 400
+            height : 350
             cacheBuffer: 2000
             model: DelegateModel {
                 //! [0]
@@ -31,20 +41,32 @@ ColumnLayout {
             }
         }
     }
-    RowLayout{
+    ColumnLayout{
+        Rectangle {
+            width: test.paintedWidth
+            height: test.paintedHeight
+            Text {
+                anchors.fill:parent
+                id: test
+                font.family: "Helvetica"
+                font.pointSize: 10
+                text:  "Bateau Restant :" + boatPlace + "/" + "18"
+            }
+        }
         Button{
             Layout.minimumWidth : 100
             Layout.alignment: Qt.AlignVCenter
             text: qsTr("Launch Game")
             onClicked: {
-                main.start = true
+                if (boatPlace == 0) {
+                    popBoat.open()
+                    console.log("Lauch")
+                    Reseau.sendPseudo(1, main.ourPseudo)
+                    main.start = true
+                }   
             }
-
         }
     }
-    
-
-    
 }
 
 

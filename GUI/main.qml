@@ -16,14 +16,18 @@ ApplicationWindow {
     property bool connect: false
     property bool game: false
     property bool start: false
+    property string ourPseudo
+    property bool havePseudo: false
+    property int ourBoatDefeat : 0
+    property int ennemyBoatDefeat: 0
 
     PageConnexion{
-        visible: !connect
+        visible: connect
 
     }
 
     Game{
-        visible: connect
+        visible: !connect
     }
 
 }
