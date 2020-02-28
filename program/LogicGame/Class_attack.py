@@ -23,13 +23,20 @@ class Attack(QObject):
     def tire(self, x, y):
         print("Tire")
         print(x, y)
-        # fonction envoie et attente de reponse
-        self.x = x
-        self.y = y
-        x += 1
-        y += 1
-        self.TargetShoot.emit(2 ,x, y)
-        #self.Target.emit()
+        error = False
+        if self.map_enemy[0, self.y, self.x] == 9 or self.map_enemy[0, self.y, self.x] == 8:
+            if self.map_enemy[1, self.y, self.x] == 9 or self.map_enemy[1, self.y, self.x] == 8:
+                if self.map_enemy[2, self.y, self.x] == 9 or self.map_enemy[2, self.y, self.x] == 8:
+                    error = True
+        if(error == False):
+            # fonction envoie et attente de reponse
+            self.x = x
+            self.y = y
+            x += 1
+            y += 1
+            self.TargetShoot.emit(2 ,x, y)
+            #self.Target.emit()
+        return error
 
     @Slot(int, int)
     def tire2(self, resultShoot, coule):

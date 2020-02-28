@@ -14,6 +14,10 @@ GridLayout{
         id: popVictory
         message: "Vous avez gagné"
     }
+    MaPopUp{
+        id: popReplay
+        message: "Vous pouvez rejouer"
+    }
     Repeater {
         model: 225
         Rectangle {
@@ -26,7 +30,6 @@ GridLayout{
             
             function reponse(x,y,lay, touch, coule){
                 if(x == posX && y == posY && lay == indexFloor){
-                    console.log("coule")
                     if(touch == true){
                         color = 'red';
                     }
@@ -34,6 +37,7 @@ GridLayout{
                         color = 'blue';
                     }
                     if(coule == true){
+                        console.log("coule")
                         main.ennemyBoatDefeat = main.ennemyBoatDefeat + 1
                         if(main.ennemyBoatDefeat == 18){
                             popVictory.open()
@@ -50,10 +54,16 @@ GridLayout{
                 anchors.fill: parent
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
                 cursorShape: Qt.OpenHandCursor
-                onClicked: {
+                onDoubleClicked: {
                     if(main.game == true && main.start == true && main.havePseudo == true){
-                        main.game = false;
-                        Attack.tire(posX, posY) 
+                        
+                        var error = Attack.tire(posX, posY)
+                        if(error == false){
+                            main.game = false;
+                        }
+                        else{
+                            popReplay.open()
+                        }
                     }                           
                 }
             }

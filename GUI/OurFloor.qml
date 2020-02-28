@@ -10,7 +10,7 @@ GridLayout{
     rowSpacing: 0
     property string placekey
     property string colorkey
-    property int indexFloor
+    property int indexFloor: index
     property var key : [placekey, "Submarine"]
 
     MaPopUp{
