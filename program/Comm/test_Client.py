@@ -2,7 +2,7 @@ from reseau import Reseau
 from PySide2.QtCore import Slot
 
 @Slot(str)
-def test(pseudo):
+def pseudo_test(pseudo):
     print(pseudo)
 
 if __name__ == "__main__":
