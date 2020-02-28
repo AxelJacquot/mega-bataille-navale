@@ -38,14 +38,18 @@ class defend(QObject):
                     data1 = 3
                 for i in range(5):
                     test = boat[typeBoat][i]
-                    if test[0] <= x <= test[1]  and test[2] <= y <= test[3] and lay == test[4]:
-                        xSize = int(test[0] - test[1] + 1)
-                        ySize = int(test[2] - test[2] + 1)
+                    xbegin = int(test[0])
+                    xfinish = int(test[1])
+                    ybegin = int(test[2])
+                    yfinish = int(test[3])
+                    if xbegin <= x <= xfinish  and ybegin <= y <= yfinish and lay == test[4]:
+                        xSize = xbegin - xfinish + 1
+                        ySize = ybegin - yfinish + 1
                         print("xSize: ", xSize)
                         print("ySize: ", ySize)
-                        for xCoule in range(int(test[0]), int(test[1])):
-                            for yCoule in range(int(test[2]), int(test[3])):
-                                if int(test[2]) <= y <= int(test[3]) and int(test[0]) <= x <= int(test[1]):
+                        for xCoule in range(xbegin, xfinish):
+                            for yCoule in range(ybegin, yfinish):
+                                if ybegin <= y <= yfinish and xbegin <= x <= xfinish:
                                     if map_allied[lay, yCoule, xCoule] == 9:
                                         errorCoule += 1
                         if (xSize * ySize) == errorCoule  and errorCoule != 0:
