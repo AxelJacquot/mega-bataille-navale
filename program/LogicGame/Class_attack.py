@@ -24,9 +24,10 @@ class Attack(QObject):
         print("Tire")
         print(x, y)
         error = False
-        if self.map_enemy[0, self.y, self.x] == 9 or self.map_enemy[0, self.y, self.x] == 8:
-            if self.map_enemy[1, self.y, self.x] == 9 or self.map_enemy[1, self.y, self.x] == 8:
-                if self.map_enemy[2, self.y, self.x] == 9 or self.map_enemy[2, self.y, self.x] == 8:
+        if self.map_enemy[0, y, x] == 9 or self.map_enemy[0, y, x] == 8:
+            if self.map_enemy[1, y, x] == 9 or self.map_enemy[1, y, x] == 8:
+                if self.map_enemy[2, y, x] == 9 or self.map_enemy[2, y, x] == 8:
+                    print(error)
                     error = True
         if(error == False):
             # fonction envoie et attente de reponse
