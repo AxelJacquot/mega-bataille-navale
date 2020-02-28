@@ -8,9 +8,9 @@ ColumnLayout{
         id: viewOur
         currentIndex: tabBarOur.currentIndex //index par défaut
         //orientation: Qt.Vertical
-        OurFloor{placekey : "Boat"; colorkey: "cornflowerblue"}
-        OurFloor{placekey : "Submarine"; colorkey: "darkslateblue"}
-        OurFloor{placekey : "Submarine"; colorkey : "midnightblue"}
+        OurFloor{placekey : "Boat"; colorkey: "cornflowerblue"; indexFloor: 0}
+        OurFloor{placekey : "Submarine"; colorkey: "darkslateblue"; indexFloor: 1}
+        OurFloor{placekey : "Submarine"; colorkey : "midnightblue"; indexFloor: 2}
     }
 
     TabBar {

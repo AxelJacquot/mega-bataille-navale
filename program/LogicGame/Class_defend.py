@@ -9,6 +9,7 @@ class defend(QObject):
     def __init__(self):
         super(defend,self).__init__()
         self.touch = 0
+        self.layer = 0
 
 
 
@@ -21,11 +22,12 @@ class defend(QObject):
         xSize = 0
         ySize = 0
         self.touch = 0
-        layer = 0
+        self.layer = 0
         errorCoule = 0
         for lay in range(3):
             if map_allied[lay, y, x] != 0 and map_allied[lay, y, x] != 9 and map_allied[lay, y, x] != 8:
                 test = 1
+                print("here")
                 typeBoat = int(map_allied[lay, y, x])
                 if lay == 0:
                     if typeBoat == 1 or typeBoat == 2 or typeBoat == 3 or typeBoat == 4:
@@ -46,15 +48,17 @@ class defend(QObject):
                         if (xSize * ySize) == errorCoule  and errorCoule != 0:
                             data2 = 1
                         break
-                layer = lay
+                self.layer = lay
+                print("test: ", self.layer)
                 self.touch = 1
                 map_allied[lay, y, x] = 9
                 break
             elif map_allied[lay, y, x] == 0:
-                layer = lay
+                self.layer = lay
                 self.touch = 0
                 map_allied[lay, y, x] = 8
-        self.ShootQML.emit(x, y, layer, self.touch)
+        print("test: ", self.layer)
+        self.ShootQML.emit(x, y, self.layer, self.touch)
         self.Shoot.emit(3, data1, data2)
         
 

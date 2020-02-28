@@ -70,7 +70,7 @@ class PA:
 
     def place_boat(self, x, y, type_boat, index, orientation):
         if type_boat == 3:
-            if 1 > index >= 0:
+            if 2 > index >= 0:
                 if orientation == 1:
                     if x + self.size_y <= 15 and (y >= 0) and (x >= 0) and y + self.size_x <= 15:
                         self.x_finish = x + self.size_y

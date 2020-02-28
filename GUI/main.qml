@@ -18,12 +18,12 @@ ApplicationWindow {
     property bool start: false
 
     PageConnexion{
-        visible: connect
+        visible: !connect
 
     }
 
     Game{
-        visible: !connect
+        visible: connect
     }
 
 }

@@ -16,6 +16,7 @@ ColumnLayout{
     }
        
     SwipeView{
+        clip: true
         Layout.alignment: Qt.AlignCenter
         currentIndex: bar.currentIndex
         Join{}

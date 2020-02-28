@@ -10,7 +10,8 @@ GridLayout{
     rowSpacing: 0
     property string placekey
     property string colorkey
-    property int indexLayer: viewOur.currentIndex
+    property int indexFloor
+    property var key : [placekey, "Submarine"]
     Repeater {
         model: 225
         ColumnLayout{
@@ -22,7 +23,7 @@ GridLayout{
                 id : dragTarget
                 width: 25
                 height: 25
-                keys: placekey
+                keys: key
                 onEntered: {
                     console.log("Test")
                     var error = Player.TestPlaceBoat(posX, posY, root.typeBoat, root.indexBoat, root.orientation)
@@ -37,7 +38,7 @@ GridLayout{
 
                 onDropped: {
                     //drag.accepted = false
-                    var error = Player.PlaceBoat(posX, posY, indexLayer, root.typeBoat, root.indexBoat, root.orientation)
+                    var error = Player.PlaceBoat(posX, posY, indexFloor, root.typeBoat, root.indexBoat, root.orientation)
                     console.log(error)
                     if(error == false){
                         drop.accept(Qt.IgnoreAction)
@@ -57,14 +58,15 @@ GridLayout{
                         Defense.ShootQML.connect(reponse)
                     }
 
-                    function reponse(x, y, lay, touche) {
-                        if(x == posX && y == posY && lay == indexLayer){
-                            console.log("touche")
+                    function reponse(x, y, lay, touche){
+                        if(x == posX && y == posY && lay == indexFloor){
+                            console.log(lay)
+                            console.log(indexFloor)
                             if(touche == 1){
                                 color = 'black'
-                            }
-                            main.game = true
+                            }  
                         }
+                        main.game = true
                     }
                     
                     //visible: parent.containsDrag
