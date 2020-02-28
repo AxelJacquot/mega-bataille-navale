@@ -42,7 +42,8 @@ class defend(QObject):
                     xfinish = int(test[1])
                     ybegin = int(test[2])
                     yfinish = int(test[3])
-                    if xbegin <= x <= xfinish  and ybegin <= y <= yfinish and lay == test[4]:
+                    layer = int(test[4])
+                    if xbegin <= x <= xfinish  and ybegin <= y <= yfinish and lay == layer:
                         xSize = xbegin - xfinish + 1
                         ySize = ybegin - yfinish + 1
                         print("xSize: ", xSize)
