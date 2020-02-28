@@ -19,7 +19,7 @@ class Attack(QObject):
         self.y = 0
         self.tir = 0
 
-    @Slot(int, int)
+    @Slot(int, int, result=bool)
     def tire(self, x, y):
         print("Tire")
         print(x, y)
@@ -37,6 +37,7 @@ class Attack(QObject):
             y += 1
             self.TargetShoot.emit(2 ,x, y)
             #self.Target.emit()
+        print(error)
         return error
 
     @Slot(int, int)
