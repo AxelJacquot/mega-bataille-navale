@@ -10,6 +10,7 @@ GridLayout{
     rowSpacing: 0
     property string placekey
     property string colorkey
+    property var key : [placekey, "Submarine"]
     property int indexLayer: viewOur.currentIndex
     Repeater {
         model: 225
@@ -22,7 +23,7 @@ GridLayout{
                 id : dragTarget
                 width: 25
                 height: 25
-                keys: placekey
+                keys: key
                 onEntered: {
                     console.log("Test")
                     var error = Player.TestPlaceBoat(posX, posY, root.typeBoat, root.indexBoat, root.orientation)
