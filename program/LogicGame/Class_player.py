@@ -77,13 +77,15 @@ class player(QObject):
 
     @Slot(int,int,int,int,int,bool, result=bool)
     def PlaceBoat(self, x_begin, y_begin, layer, type_boat, index, orientation):
-        for y in range(15):
-            for x in range(15):
-                if y_begin <= y <= self.y_finish - 1 and x_begin <= x <= self.x_finish - 1:
-                    map_allied[layer, y, x] = type_boat
-        boat[type_boat][index] = [x_begin, self.x_finish, y_begin, self.y_finish, layer]
-        print(boat)
-        return True
+        error = self.TestPlaceBoat(x_begin, y_begin, layer, type_boat, index, orientation)
+        if error == True:
+            for y in range(15):
+                for x in range(15):
+                    if y_begin <= y <= self.y_finish - 1 and x_begin <= x <= self.x_finish - 1:
+                        map_allied[layer, y, x] = type_boat
+            boat[type_boat][index] = [x_begin, self.x_finish, y_begin, self.y_finish, layer]
+            print(map_allied)
+            return True
             
 # num_sm
 # 1 => porte-container
