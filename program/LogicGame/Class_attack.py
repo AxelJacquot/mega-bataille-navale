@@ -41,5 +41,7 @@ class Attack(QObject):
                     self.touch = True
                 else:
                     self.map_enemy[lay, self.y, self.x] = 8
+                    self.touch = False
                 self.TargetQMl.emit(self.x, self.y, lay, self.touch)
+            if(self.touch == True):
                 break

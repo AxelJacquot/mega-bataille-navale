@@ -5,11 +5,14 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.5
 
 ColumnLayout {
-    width : 200
-    RowLayout{
+    width : 250
+    spacing : 100
+    ColumnLayout{
+        width : 250
+        height : 400
         ListView{
-            width : 200
-            height : 480
+            width : 250
+            height : 400
             cacheBuffer: 2000
             model: DelegateModel {
                 //! [0]

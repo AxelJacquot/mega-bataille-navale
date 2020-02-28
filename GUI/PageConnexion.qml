@@ -3,12 +3,10 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 
 ColumnLayout{
+    width: main.width
+    height: main.height
     spacing: 20
     Layout.margins: 5
-    Connections{
-       // target:
-
-    }
 
     Text {
         id: title
@@ -16,15 +14,17 @@ ColumnLayout{
         font.pointSize: 18
         Layout.alignment: Qt.AlignCenter
     }
-    StackLayout{
+       
+    SwipeView{
+        Layout.alignment: Qt.AlignCenter
         currentIndex: bar.currentIndex
         Join{}
         Host{}
     }
-
+    
     TabBar{
         id: bar
-        Layout.alignment: Qt.AlignBottom
+        Layout.alignment: Qt.AlignCenter
         TabButton{
             text: qsTr("Join")
         }

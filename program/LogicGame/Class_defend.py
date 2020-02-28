@@ -34,7 +34,6 @@ class defend(QObject):
                         data1 = 2
                 else:
                     data1 = 3
-
                 for i in range(5):
                     test = boat[typeBoat][i]
                     if test[0] >= x <= test[1] -1  and test[2] >= y <= test[3] - 1 and lay == test[4]:
@@ -55,7 +54,6 @@ class defend(QObject):
                 layer = lay
                 self.touch = 0
                 map_allied[lay, y, x] = 8
-                break
         self.ShootQML.emit(x, y, layer, self.touch)
         self.Shoot.emit(3, data1, data2)
         

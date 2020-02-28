@@ -84,38 +84,6 @@ GridLayout{
                 }
 
             }
-
-            /*Rectangle {
-
-                id : rectOur
-                width: 25; height: 25
-                color : (boat || mouseA.containsMouse) ? "#54647d" : "dark blue"
-                border.color: Qt.lighter(color)
-                MouseArea{
-                    id: mouseA
-                    anchors.fill: parent
-                    propagateComposedEvents: true
-                    acceptedButtons: Qt.LeftButton | Qt.RightButton
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        if (mouse.button === Qt.RightButton){
-                            i = index
-                            posX = i /15
-                            posY = i % 15
-                            console.log(index)
-                            console.log(posX)
-                            console.log(posY)
-                        }
-                        else
-                            rectOur.color = "Blue"
-                    }
-                }
-            }*/
-
         }
-
-
     }
-
-
 }
