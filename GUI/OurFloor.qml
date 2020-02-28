@@ -32,7 +32,6 @@ GridLayout{
                 keys: key
                 onEntered: {
                     var error = Player.TestPlaceBoat(posX, posY, indexFloor, root.typeBoat, root.indexBoat, root.orientation)
-                    console.log(error)
                     if(error == false){
                         root.dropAccept = false
                     }
@@ -44,7 +43,6 @@ GridLayout{
                 onDropped: {
                     //drag.accepted = false
                     var error = Player.PlaceBoat(posX, posY, indexFloor, root.typeBoat, root.indexBoat, root.orientation)
-                    console.log(error)
                     root.dropEffect = true
                 }
                 Rectangle {
@@ -60,12 +58,11 @@ GridLayout{
 
                     function reponse(x, y, lay, touche, coule){
                         if(x == posX && y == posY && lay == indexFloor){
-                            console.log(lay)
-                            console.log(indexFloor)
                             if(touche == 1){
                                 color = 'black'
                             }
                             if(coule == 1){
+                                console.log("coule")
                                 main.ourBoatDefeat = main.ourBoatDefeat + 1
                                 if(main.ourBoatDefeat == 18){
                                     popDefeat.open()
