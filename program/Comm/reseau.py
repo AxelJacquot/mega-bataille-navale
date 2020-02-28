@@ -61,7 +61,7 @@ class Reseau(QThread):
     @Slot(int, str)
     def sendPseudo(self, code, message):
         bytemessage = ""
-        bytemessage += str(code)
+        bytemessage += chr(code)
         bytemessage += chr(len(message))
         bytemessage += message
         print("Message: ", message, "\n\r Bytemessage: ", bytemessage)
