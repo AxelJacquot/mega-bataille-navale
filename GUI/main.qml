@@ -23,11 +23,11 @@ ApplicationWindow {
     property int ennemyBoatDefeat: 0
 
     ConReg{
-        visible: connect
+        visible: !connect
     }
 
     Game{
-        visible: !connect
+        visible: connect
     }
 
 }
