@@ -16,14 +16,18 @@ ColumnLayout{
     TabBar {
          id: tabBarOur
          currentIndex: viewOur.currentIndex
+         Layout.alignment: Qt.AlignCenter
          TabButton {
-             text: qsTr("1")
+             text: qsTr("Surface")
+             width: 90
          }
          TabButton {
-             text: qsTr("2")
+             text: qsTr("Peu Profond")
+             width: 90
          }
          TabButton{
-             text:  qsTr("3")
+             text:  qsTr("Profond")
+             width: 90
          }
      }
 }

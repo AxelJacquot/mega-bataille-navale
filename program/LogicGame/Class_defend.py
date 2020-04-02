@@ -47,8 +47,6 @@ class defend(QObject):
                     if xbegin <= x <= xfinish  and ybegin <= y <= yfinish and lay == layer:
                         xSize = xfinish - xbegin
                         ySize = yfinish - ybegin 
-                        print("xSize: ", xSize)
-                        print("ySize: ", ySize)
                         for xCoule in range(15):
                             for yCoule in range(15):
                                 if ybegin <= yCoule <= yfinish - 1 and xbegin <= xCoule <= xfinish - 1:

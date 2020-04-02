@@ -6,9 +6,6 @@ class Reseau(QThread):
     playerConnected = Signal(str)
     ReceiveShoot = Signal(int, int)
     SendShoot = Signal(int, int)
-
-
-
     Connect = Signal()
     
     def __init__(self):
@@ -31,11 +28,9 @@ class Reseau(QThread):
             print("Good Connect")
             self.Connect.emit()
             return 1
-            #self.ConnectClient.emit(True)
         else:
             print("Bad Connect")
             return 0
-            self.ConnectClient.emit(False)
 
     @Slot(str, str, result=int)
     def host(self, ip, port):
@@ -47,16 +42,14 @@ class Reseau(QThread):
         except:
             error = True
             print("Connexion Impossible")
-            #self.ConnectHost.emit(False)
             return 0
         if error == False:
             self.isclient = False
             self.socket.listen(2)
-            self.socketclient, self.infos_connexion = self.socket.accept()
+            self.socketServeur, self.infos_connexion = self.socket.accept()
             print(self.infos_connexion)
             self.Connect.emit()
             return 1
-            #self.ConnectHost.emit(True)
 
     @Slot(int, str)
     def sendPseudo(self, code, message):
@@ -68,7 +61,7 @@ class Reseau(QThread):
         if self.isclient:
             self.socket.send(bytemessage.encode())
         else:
-            self.socketclient.send(bytemessage.encode())
+            self.socketServeur.send(bytemessage.encode())
 
     @Slot(int, int, int)
     def sendData(self, code, data1, data2):
@@ -80,17 +73,14 @@ class Reseau(QThread):
         if self.isclient:
             self.socket.send(bytemessage.encode())
         else:
-            self.socketclient.send(bytemessage.encode())
+            self.socketServeur.send(bytemessage.encode())
         
     def run(self):
-        print("CJKBVJKBSJKV")
         while self.existing == False:
             if self.isclient:
-                print("Client")
                 self.messageReceive = self.socket.recv(1024).decode()
             else:
-                print("Host")
-                self.messageReceive = self.socketclient.recv(1024).decode()
+                self.messageReceive = self.socketServeur.recv(1024).decode()
             #print(self.messageReceive)
             iD = ord(self.messageReceive[0])
             if iD == 1:

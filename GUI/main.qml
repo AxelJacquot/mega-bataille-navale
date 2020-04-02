@@ -22,7 +22,7 @@ ApplicationWindow {
     property int ourBoatDefeat : 0
     property int ennemyBoatDefeat: 0
 
-    PageConnexion{
+    ConReg{
         visible: connect
     }
 

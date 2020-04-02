@@ -53,10 +53,10 @@ ColumnLayout {
         Button{
             Layout.minimumWidth : 100
             Layout.alignment: Qt.AlignVCenter
-            text: qsTr("Launch Game")
+            text: qsTr("Lancer la partie")
             onClicked: {
                 if (boatPlace == 0) {
-                    console.log("Lauch")
+                    console.log("Lancer")
                     Reseau.sendPseudo(1, main.ourPseudo)
                     main.start = true
                 }   

@@ -22,15 +22,25 @@ ColumnLayout{
         Join{}
         Host{}
     }
+
+    Button{
+        Layout.alignment: Qt.AlignCenter
+        text: qsTr("Règles")
+        onClicked: {
+            conReg.reg = true
+        }
+    }
     
     TabBar{
         id: bar
         Layout.alignment: Qt.AlignCenter
         TabButton{
-            text: qsTr("Join")
+            width: 100
+            text: qsTr("Rejoindre")
         }
         TabButton{
-            text: qsTr("Host")
+            width: 100
+            text: qsTr("Hôte")
         }
     }
 }

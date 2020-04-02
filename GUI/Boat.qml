@@ -9,7 +9,6 @@ ColumnLayout {
     Rectangle {
         width: myText.paintedWidth
         height: myText.paintedHeight
-
         Text {
             anchors.fill:parent
             id: myText
@@ -26,7 +25,7 @@ ColumnLayout {
             id: test
             font.family: "Helvetica"
             font.pointSize: 10
-            text:  "Boat Place :" + nbrBoat + "/" + nbr
+            text:  "Bateau placer :" + nbrBoat + "/" + nbr
         }
     }
     GridLayout{
@@ -40,10 +39,8 @@ ColumnLayout {
                 property bool test: true
                 property int mul: caseX * caseY
                 property bool opac: false
-
                 width: sens ? 25 * caseY : 25 * caseY
                 height: sens ? 25 * caseX : 25 * caseX
-
                 MouseArea {
                     id: mouseArea
 
@@ -115,7 +112,6 @@ ColumnLayout {
                                     width: 25
                                     height: 25
                                     color: "blue"
-
                                     opacity: index == 0 && opac ? 0.65 : 1
                                 }
                             }
@@ -131,4 +127,3 @@ ColumnLayout {
         }
     }
 }
-
