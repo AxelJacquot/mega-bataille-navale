@@ -15,7 +15,7 @@ ColumnLayout{
         Layout.alignment: Qt.AlignCenter
     }
        
-    SwipeView{
+    SwipeView {
         clip: true
         Layout.alignment: Qt.AlignCenter
         currentIndex: bar.currentIndex
@@ -23,7 +23,7 @@ ColumnLayout{
         Host{}
     }
 
-    Button{
+    Button {
         Layout.alignment: Qt.AlignCenter
         text: qsTr("Règles")
         onClicked: {

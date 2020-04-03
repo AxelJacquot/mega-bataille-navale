@@ -2,7 +2,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 
-ColumnLayout{
+ColumnLayout {
     width: main.width
     height: main.height
     spacing: 20
@@ -13,7 +13,6 @@ ColumnLayout{
         Layout.alignment: Qt.AlignCenter
         text: qsTr("Règles du jeu")
         font.pointSize: 24
-        
     }
 
     Text {
@@ -32,8 +31,7 @@ ColumnLayout{
         \n
         Il 'sagit d'un jeu au tour par tour, le premier joueur à jouer est l'hôte.\n
         Pour jouer, il suffit de cliquer sur la case sur la carte nous souhaitons tirer.\n
-        La partie se termine une fois que tous les bateaux et sous marins d'un joueur sont coulés.")
-        
+        La partie se termine une fois que tous les bateaux et sous marins d'un joueur sont coulés.")   
     }
 
      Text {
@@ -41,9 +39,7 @@ ColumnLayout{
         font.pointSize: 7
         Layout.alignment: Qt.AlignCenter
         text: qsTr("        Si problème désactiver les pare-feu et vérifier que les ports soit ouverts.")
-        
     }
-
 
     Button{
         text: "Retour"
@@ -52,5 +48,4 @@ ColumnLayout{
             conReg.reg = false
         }
     }
-    
 }
