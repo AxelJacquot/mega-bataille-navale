@@ -1,2 +1,17 @@
 
 .idea/
+env/
+program/__pycache__/
+venv/
+program/.vscode/
+
+
+.vscode/
+
+program/LogicGame/__pycache__/
+
+program/Comm/__pycache__/
+
+*.pyc
+
+source/

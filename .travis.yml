@@ -21,7 +21,7 @@ install:
 
 # command to run tests
 script:
-  - pytest --cov=hello 
+  - pytest --cov=program 
 #Command to use coverage 
 after_success:
   - coveralls
