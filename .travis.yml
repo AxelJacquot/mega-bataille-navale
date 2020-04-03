@@ -1,5 +1,6 @@
 language: python
 python:
+<<<<<<< HEAD
   - '3.6'
   - '3.7'
   - '3.8'
@@ -12,3 +13,16 @@ jobs:
   - python: "3.8"
     env: TEST_SUITE=suite_3_8
 script: ./test.py $TEST_SUITE
+=======
+  - "3.8"
+# command to install dependencies
+install:
+  - pip3 install -r requirements.txt
+
+# command to run tests
+script:
+  - pytest --cov=hello 
+#Command to use coverage 
+after_success:
+  - coveralls
+>>>>>>> master
